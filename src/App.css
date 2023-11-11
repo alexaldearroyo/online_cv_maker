@@ -1,38 +1,89 @@
 .App {
   text-align: center;
+  font-family: 'Arial', sans-serif;
+  background: #f4f4f4;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #007bff;
+  color: white;
+  padding: 20px 0;
+  margin-bottom: 30px;
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+
+h2 {
+  color: #333;
+  font-size: 1.25rem;
+  font-weight: normal;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.title-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  margin: 2rem;
+}
+
+.title-button:hover {
+  background-color: #e9e9e9;
+}
+
+
+form {
+  max-width: 600px;
+  margin: auto;
+  padding: 15px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  text-align: left;
+}
+
+label {
+  /* display: block; */
+  margin-bottom: 8px;
+  margin-right: 8px; 
+}
+
+
+input[type="text"], input[type="email"], input[type="tel"] {
+  /* width: 100%; */
+  flex-grow: 1;
+  font-size: 1rem;
+  box-sizing: border-box; 
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #28a745;
   color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button:hover {
+  background-color: #218838;
 }

@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+import "./App.css";
+
+import React, { useState } from "react";
+import ResumeForm from "./components/ResumeForm";
+import ResumePreview from "./components/ResumePreview";
 
 function App() {
+  const [resumeData, setResumeData] = useState({
+    experience: [],
+    education: [],
+    skills: [],
+    projects: [],
+    certificates: [],
+    languages: [],
+  });
+
+  const handleDataChange = (newData) => {
+    setResumeData(newData);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Online CV Maker</h1>
       </header>
+
+      <ResumeForm onDataChange={handleDataChange} />
+      <ResumePreview data={resumeData} />
     </div>
   );
 }
