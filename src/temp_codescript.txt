@@ -1,0 +1,219 @@
+App.js:
+
+// import logo from './logo.svg';
+import "./App.css";
+
+import React, { useState } from "react";
+import ResumeForm from "./components/ResumeForm";
+import ResumePreview from "./components/ResumePreview";
+
+function App() {
+  const [resumeData, setResumeData] = useState({
+    experience: [],
+    education: [],
+    skills: [],
+    projects: [],
+    certificates: [],
+    languages: [],
+  });
+
+  const handleDataChange = (newData) => {
+    setResumeData(newData);
+  };
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1>Online CV Maker</h1>
+      </header>
+
+      <ResumeForm onDataChange={handleDataChange} />
+      <ResumePreview data={resumeData} />
+    </div>
+  );
+}
+
+export default App;
+
+----------------------------------------
+
+index.css:
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+----------------------------------------
+
+components/ResumeForm.jsx:
+
+import React, { useState } from "react";
+
+import PersonalInfoForm from "./PersonalInfoForm";
+// import ExperienceForm from "./ExperienceForm";
+// import EducationForm from "./EducationForm";
+// import SkillsForm from "./SkillsForm";
+// import ProjectsForm from "./ProjectsForm";
+// import CertificatesForm from "./CertificatesForm";
+// import LanguagesForm from "./LanguagesForm";
+
+const ResumeForm = ({ onDataChange }) => {
+  const [resumeData, setResumeData] = useState({
+    personalInfo: {},
+    // experience: [],
+    // education: [],
+    // skills: [],
+    // projects: [],
+    // certificates: [],
+    // languages: [],
+  });
+
+  const handlePersonalInfoUpdate = (newPersonalInfo) => {
+    setResumeData({ ...resumeData, personalInfo: newPersonalInfo });
+    onDataChange({ ...resumeData, personalInfo: newPersonalInfo });
+  };
+
+  // const handleExperienceUpdate = (newExperience) => {
+  //   setResumeData({ ...resumeData, experience: newExperience });
+  //   onDataChange({ ...resumeData, experience: newExperience });
+  // };
+
+  // const handleEducationUpdate = (newEducation) => {
+  //   setResumeData({ ...resumeData, education: newEducation });
+  //   onDataChange({ ...resumeData, education: newEducation });
+  // };
+
+  // const handleSkillsUpdate = (newSkills) => {
+  //   setResumeData({ ...resumeData, skills: newSkills });
+  //   onDataChange({ ...resumeData, skills: newSkills });
+  // };
+
+  // const handleProjectsUpdate = (newProjects) => {
+  //   setResumeData({ ...resumeData, projects: newProjects });
+  //   onDataChange({ ...resumeData, projects: newProjects });
+  // };
+
+  // const handleCertificatesUpdate = (newCertificates) => {
+  //   setResumeData({ ...resumeData, certificates: newCertificates });
+  //   onDataChange({ ...resumeData, certificates: newCertificates });
+  // };
+
+  // const handleLanguagesUpdate = (newLanguages) => {
+  //   setResumeData({ ...resumeData, languages: newLanguages });
+  //   onDataChange({ ...resumeData, languages: newLanguages });
+  // };
+
+  return (
+    <div>
+      <PersonalInfoForm onUpdate={handlePersonalInfoUpdate} />
+      {/* <ExperienceForm onUpdate={handleExperienceUpdate} />
+      <EducationForm onUpdate={handleEducationUpdate} />
+      <SkillsForm onUpdate={handleSkillsUpdate} />
+      <ProjectsForm onUpdate={handleProjectsUpdate} />
+      <CertificatesForm onUpdate={handleCertificatesUpdate} />
+      <LanguagesForm onUpdate={handleLanguagesUpdate} /> */}
+    </div>
+  );
+};
+
+export default ResumeForm;
+
+----------------------------------------
+
+components/PersonalInfoForm.jsx:
+
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+
+const PersonalInfoForm = ({ onUpdate }) => {
+  const [personalInfo, setPersonalInfo] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+  });
+
+  const [isFormVisible, setIsFormVisible] = useState(false);
+
+  const toggleFormVisibility = () => {
+    setIsFormVisible(!isFormVisible);
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setPersonalInfo({ ...personalInfo, [name]: value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onUpdate(personalInfo);
+  };
+
+  return (
+    <div>
+      <div className="title-button" onClick={toggleFormVisibility}>
+        <h2>Personal Information</h2>
+        <FontAwesomeIcon icon={isFormVisible ? faChevronUp : faChevronDown} />
+      </div>
+      {isFormVisible && (
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Name:</label>
+            <input
+              type="text"
+              name="firstName"
+              value={personalInfo.firstName}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label>Surname:</label>
+            <input
+              type="text"
+              name="lastName"
+              value={personalInfo.lastName}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label>Email:</label>
+            <input
+              type="email"
+              name="email"
+              value={personalInfo.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label>Phone:</label>
+            <input
+              type="tel"
+              name="phoneNumber"
+              value={personalInfo.phoneNumber}
+              onChange={handleChange}
+            />
+          </div>
+          {/* Agrega más campos según sea necesario */}
+
+          <button type="submit">Submit</button>
+        </form>
+      )}
+    </div>
+  );
+};
+
+export default PersonalInfoForm;
+
+----------------------------------------
+

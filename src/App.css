@@ -2,6 +2,10 @@
   text-align: center;
   font-family: 'Arial', sans-serif;
   background: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -10,6 +14,7 @@
   color: white;
   padding: 20px 0;
   margin-bottom: 30px;
+  width: 100%;
 }
 
 .App-header h1 {
@@ -27,6 +32,7 @@ h2 {
 }
 
 .title-button {
+  min-width: 600px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -35,7 +41,8 @@ h2 {
   padding: 10px;
   border-radius: 4px;
   background-color: #f8f8f8;
-  margin: 2rem;
+  margin: 1rem 2rem;
+  margin-top: 0;
 }
 
 .title-button:hover {
@@ -44,22 +51,39 @@ h2 {
 
 
 form {
-  max-width: 600px;
+  width: 600px;
   margin: auto;
   padding: 15px;
   background: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: left;
+  margin-bottom: 1rem;
+  overflow: auto;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: row; /* Organiza los elementos en fila */
+  align-items: center;
+  margin-bottom: 10px;
+  max-width: 100%;
+  overflow: auto;
 }
 
 label {
   /* display: block; */
   margin-bottom: 8px;
-  margin-right: 8px; 
+  margin-right: 8px;
+  white-space: nowrap;
+  flex-basis: 30%;
+  margin-right: 10px;
+  text-align: right;
+  max-width: 100%;
 }
 
 
@@ -72,6 +96,7 @@ input[type="text"], input[type="email"], input[type="tel"] {
   margin: 10px 0;
   border: 1px solid #ddd;
   border-radius: 4px;
+  max-width: 100%;
 }
 
 button {
