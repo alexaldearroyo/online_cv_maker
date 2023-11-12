@@ -24,9 +24,14 @@ function App() {
       <header className="App-header">
         <h1>Online CV Maker</h1>
       </header>
-
+      <div className="app-container">
+      <div className="form-panel">
       <ResumeForm onDataChange={handleDataChange} />
+      </div>
+      <div className="preview-panel">
       <ResumePreview data={resumeData} />
+      </div>
+      </div>
     </div>
   );
 }

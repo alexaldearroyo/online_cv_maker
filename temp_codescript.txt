@@ -26,9 +26,14 @@ function App() {
       <header className="App-header">
         <h1>Online CV Maker</h1>
       </header>
-
+      <div className="app-container">
+      <div className="form-panel">
       <ResumeForm onDataChange={handleDataChange} />
+      </div>
+      <div className="preview-panel">
       <ResumePreview data={resumeData} />
+      </div>
+      </div>
     </div>
   );
 }
@@ -37,152 +42,143 @@ export default App;
 
 ----------------------------------------
 
-src/components/ResumeForm.js:
+src/App.css:
 
-import React, { useState } from "react";
+.App {
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  background: #D9D9D9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
 
-import PersonalInfoForm from "./PersonalInfoForm";
-// import ExperienceForm from "./ExperienceForm";
-// import EducationForm from "./EducationForm";
-// import SkillsForm from "./SkillsForm";
-// import ProjectsForm from "./ProjectsForm";
-// import CertificatesForm from "./CertificatesForm";
-// import LanguagesForm from "./LanguagesForm";
-
-const ResumeForm = ({ onDataChange }) => {
-  const [resumeData, setResumeData] = useState({
-    personalInfo: {},
-    // experience: [],
-    // education: [],
-    // skills: [],
-    // projects: [],
-    // certificates: [],
-    // languages: [],
-  });
-
-  const handlePersonalInfoUpdate = (newPersonalInfo) => {
-    setResumeData({ ...resumeData, personalInfo: newPersonalInfo });
-    onDataChange({ ...resumeData, personalInfo: newPersonalInfo });
-  };
-
-  // const handleExperienceUpdate = (newExperience) => {
-  //   setResumeData({ ...resumeData, experience: newExperience });
-  //   onDataChange({ ...resumeData, experience: newExperience });
-  // };
-
-  // const handleEducationUpdate = (newEducation) => {
-  //   setResumeData({ ...resumeData, education: newEducation });
-  //   onDataChange({ ...resumeData, education: newEducation });
-  // };
-
-  // const handleSkillsUpdate = (newSkills) => {
-  //   setResumeData({ ...resumeData, skills: newSkills });
-  //   onDataChange({ ...resumeData, skills: newSkills });
-  // };
-
-  // const handleProjectsUpdate = (newProjects) => {
-  //   setResumeData({ ...resumeData, projects: newProjects });
-  //   onDataChange({ ...resumeData, projects: newProjects });
-  // };
-
-  // const handleCertificatesUpdate = (newCertificates) => {
-  //   setResumeData({ ...resumeData, certificates: newCertificates });
-  //   onDataChange({ ...resumeData, certificates: newCertificates });
-  // };
-
-  // const handleLanguagesUpdate = (newLanguages) => {
-  //   setResumeData({ ...resumeData, languages: newLanguages });
-  //   onDataChange({ ...resumeData, languages: newLanguages });
-  // };
-
-  return (
-    <div>
-      <PersonalInfoForm onUpdate={handlePersonalInfoUpdate} />
-      {/* <ExperienceForm onUpdate={handleExperienceUpdate} />
-      <EducationForm onUpdate={handleEducationUpdate} />
-      <SkillsForm onUpdate={handleSkillsUpdate} />
-      <ProjectsForm onUpdate={handleProjectsUpdate} />
-      <CertificatesForm onUpdate={handleCertificatesUpdate} />
-      <LanguagesForm onUpdate={handleLanguagesUpdate} /> */}
-    </div>
-  );
-};
-
-export default ResumeForm;
-
-----------------------------------------
-
-src/components/PersonalInfoForm.js:
-
-import React, { useState } from 'react';
-
-const PersonalInfoForm = ({ onUpdate }) => {
-  const [personalInfo, setPersonalInfo] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
-    // Agrega otros campos según sea necesario
-  });
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setPersonalInfo({ ...personalInfo, [name]: value });
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    onUpdate(personalInfo);
-  };
+}
 
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Name:</label>
-        <input
-          type="text"
-          name="firstName"
-          value={personalInfo.firstName}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label>Surname:</label>
-        <input
-          type="text"
-          name="lastName"
-          value={personalInfo.lastName}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label>Email:</label>
-        <input
-          type="email"
-          name="email"
-          value={personalInfo.email}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label>Phone:</label>
-        <input
-          type="tel"
-          name="phoneNumber"
-          value={personalInfo.phoneNumber}
-          onChange={handleChange}
-        />
-      </div>
-      {/* Agrega más campos según sea necesario */}
+.App-header {
+  background-color: white;
+  color: black;
+  border: black 3px solid;
+  padding: 20px 0;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
 
 
-      <button type="submit">Submit</button>
-    </form>
-  );
-};
+h2 {
+  color: #333;
+  font-size: 1.25rem;
+  font-weight: normal;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
 
-export default PersonalInfoForm;
+.app-container {
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.form-panel {
+  flex: 1;
+  border-right: 1px solid #ccc;
+  padding: 20px;
+}
+
+.preview-panel {
+  flex: 1;
+  padding: 20px;
+}
+
+.title-button {
+  min-width: 600px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  margin: 1rem 2rem;
+  margin-top: 0;
+}
+
+.title-button:hover {
+  background-color: #e9e9e9;
+}
+
+
+form {
+  width: 600px;
+  margin: auto;
+  padding: 15px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  margin-bottom: 1rem;
+  overflow: auto;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: row; /* Organiza los elementos en fila */
+  align-items: center;
+  margin-bottom: 10px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+label {
+  /* display: block; */
+  margin-bottom: 8px;
+  margin-right: 8px;
+  white-space: nowrap;
+  flex-basis: 30%;
+  margin-right: 10px;
+  text-align: right;
+  max-width: 100%;
+}
+
+
+input[type="text"], input[type="email"], input[type="tel"] {
+  /* width: 100%; */
+  flex-grow: 1;
+  font-size: 1rem;
+  box-sizing: border-box; 
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  max-width: 100%;
+}
+
+button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #218838;
+}
 
 ----------------------------------------
 
