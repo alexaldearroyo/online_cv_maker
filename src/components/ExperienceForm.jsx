@@ -2,7 +2,13 @@
 
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronUp, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronDown,
+  faChevronUp,
+  faPlus,
+  faTrash,
+  faSave,
+} from "@fortawesome/free-solid-svg-icons";
 
 const ExperienceForm = ({ onUpdate }) => {
   const [experience, setExperience] = useState([
@@ -38,6 +44,9 @@ const ExperienceForm = ({ onUpdate }) => {
   };
 
   const [isFormVisible, setIsFormVisible] = useState(false);
+  const [hasChanges, setHasChanges] = useState(false);
+
+  
 
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
@@ -49,11 +58,12 @@ const ExperienceForm = ({ onUpdate }) => {
     updatedExperiences[index] = { ...updatedExperiences[index], [name]: value };
     setExperience(updatedExperiences);
     onUpdate(updatedExperiences);
+    setHasChanges(true);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    onUpdate(experience);
+  const handleSave = () => {
+    localStorage.setItem("experience", JSON.stringify(experience));
+    setHasChanges(false);
   };
 
   return (
@@ -67,7 +77,7 @@ const ExperienceForm = ({ onUpdate }) => {
       </div>
       {isFormVisible && (
         <div className="form-container">
-          <form onSubmit={handleSubmit}>
+          <form>
             {experience.map((exp, index) => (
               <div key={index}>
                 <div className="form-field">
@@ -127,11 +137,24 @@ const ExperienceForm = ({ onUpdate }) => {
                       <FontAwesomeIcon icon={faTrash} /> Delete
                     </button>
                   )}
+                  <button
+                type="button"
+                onClick={handleSave}
+                disabled={!hasChanges}
+                className={hasChanges ? "" : "saved-button"}
+              >
+                {hasChanges ? (
+                  <>
+                    <FontAwesomeIcon icon={faSave} /> Save
+                  </>
+                ) : (
+                  "Saved"
+                )}
+              </button>
                 </div>
               </div>
             ))}
 
-            {/* Mueve el botón de submit fuera del map */}
           </form>
           {/* <button type="submit">Submit</button> */}
         </div>

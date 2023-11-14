@@ -1,3 +1,5 @@
+// components/ResumePreview.jsx
+
 import React from "react";
 
 const ResumePreview = ({ data }) => {

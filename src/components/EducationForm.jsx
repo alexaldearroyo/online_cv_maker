@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronUp, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faChevronUp, faPlus, faTrash, faSave } from "@fortawesome/free-solid-svg-icons";
 
 const EducationForm = ({ onUpdate }) => {
   const [educationList, setEducationList] = useState([
@@ -34,6 +34,7 @@ const EducationForm = ({ onUpdate }) => {
   };
 
   const [isFormVisible, setIsFormVisible] = useState(false);
+  const [hasChanges, setHasChanges] = useState(false);
 
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
@@ -45,11 +46,12 @@ const EducationForm = ({ onUpdate }) => {
     updatedEducationList[index] = { ...updatedEducationList[index], [name]: value };
     setEducationList(updatedEducationList);
     onUpdate(updatedEducationList);
+    setHasChanges(true);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    onUpdate(educationList);
+  const handleSave = () => {
+    localStorage.setItem("education", JSON.stringify(educationList));
+    setHasChanges(false);
   };
 
   return (
@@ -63,7 +65,7 @@ const EducationForm = ({ onUpdate }) => {
       </div>
       {isFormVisible && (
         <div className="form-container">
-          <form onSubmit={handleSubmit}>
+          <form>
             {educationList.map((education, index) => (
               <div key={index}>
                 <div className="form-field">
@@ -113,10 +115,23 @@ const EducationForm = ({ onUpdate }) => {
                       <FontAwesomeIcon icon={faTrash} /> Delete
                     </button>
                   )}
+                  <button
+                    type="button"
+                    onClick={handleSave}
+                    disabled={!hasChanges}
+                    className={hasChanges ? "" : "saved-button"}
+                  >
+                    {hasChanges ? (
+                      <>
+                        <FontAwesomeIcon icon={faSave} /> Save
+                      </>
+                    ) : (
+                      "Saved"
+                    )}
+                  </button>
                 </div>
               </div>
             ))}
-            <button type="submit">Submit</button>
           </form>
         </div>
       )}

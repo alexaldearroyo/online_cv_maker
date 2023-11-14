@@ -19,7 +19,6 @@ const PersonalInfoForm = ({ onUpdate }) => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [hasChanges, setHasChanges] = useState(false); // Estado para rastrear los cambios
 
-  // Al cargar el componente, intentamos obtener los datos del localStorage
   useEffect(() => {
     const savedData = localStorage.getItem("personalInfo");
     if (savedData) {
@@ -39,9 +38,8 @@ const PersonalInfoForm = ({ onUpdate }) => {
   };
 
   const handleSave = () => {
-    // Guardar los datos en el localStorage
     localStorage.setItem("personalInfo", JSON.stringify(personalInfo));
-    setHasChanges(false); // Marcar que los cambios se han guardado
+    setHasChanges(false);
   };
 
   return (

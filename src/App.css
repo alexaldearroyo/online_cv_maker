@@ -1,3 +1,5 @@
+/* App.css */
+
 .App {
   text-align: center;
   font-family: 'Arial', sans-serif;
@@ -48,26 +50,54 @@ h2 {
   gap: 2rem;
 }
 
-.form-panel, .preview-panel {
+.title-bar {
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  margin-top: -3px;
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
+
+.form-panel,
+.preview-panel {
   flex: 1;
   min-height: 80%;
   width: 90%;
-  /* margin-left: 2rem; */
-  /* margin-right: 2rem; */
   box-sizing: border-box;
   background-color: white;
-  padding: 2rem;
+  padding: 0;
   display: flex;
   border: 3px solid black;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   box-shadow: 0 4px 8px 0 rgba(30, 11, 11, 0.2);
+  position: relative;
+  margin-top: 3px;
 }
 
-/* .preview-panel {
-  justify-content: flex-start;
-} */
+
+.title-bar p {
+  margin: 0;
+  padding: 0.5rem;
+  text-align: center;
+  
+}
+
+.content {
+  padding: 2rem;
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* flex-grow: 1; */
+  width: 90%;
+}
 
 .Labels {
   width: 100%;
@@ -211,7 +241,7 @@ button:hover {
 
 .saved-button:disabled {
   background-color: #ccc;
-  border: 1px solid black;
+  box-shadow: inset 0 0 0 1px black;
   cursor: not-allowed;
   color: black;
 }
