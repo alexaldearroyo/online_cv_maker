@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronDown,
+  faChevronUp,
+  faSave,
+} from "@fortawesome/free-solid-svg-icons";
 
 const PersonalInfoForm = ({ onUpdate }) => {
   const [personalInfo, setPersonalInfo] = useState({
@@ -86,16 +90,20 @@ const PersonalInfoForm = ({ onUpdate }) => {
                 onChange={handleChange}
               />
             </div>
-            {/* Agrega más campos según sea necesario */}
 
-            {/* Cambiar el botón "Submit" por "Save" o "Saved" */}
             <button
               type="button"
               onClick={handleSave}
-              disabled={!hasChanges} // Deshabilitar si no hay cambios
-              className={hasChanges ? "" : "saved-button"} // Aplicar estilo "saved-button" si no hay cambios
+              disabled={!hasChanges}
+              className={hasChanges ? "" : "saved-button"}
             >
-              {hasChanges ? "Save" : "Saved"}
+              {hasChanges ? (
+                <>
+                  <FontAwesomeIcon icon={faSave} /> Save
+                </>
+              ) : (
+                "Saved"
+              )}
             </button>
           </form>
         </div>
