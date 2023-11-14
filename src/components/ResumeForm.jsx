@@ -55,7 +55,7 @@ const ResumeForm = ({ onDataChange }) => {
   };
 
   return (
-    <div>
+    <div className="Labels">
       <PersonalInfoForm onUpdate={handlePersonalInfoUpdate} />
       <ExperienceForm onUpdate={handleExperienceUpdate} />
       <EducationForm onUpdate={handleEducationUpdate} />
