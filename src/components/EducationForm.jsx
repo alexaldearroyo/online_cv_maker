@@ -111,7 +111,8 @@ const EducationForm = ({ onUpdate }) => {
                     </button>
                   )}
                   {educationList.length > 1 && (
-                    <button type="button" onClick={() => handleDelete(index)}>
+                    <button type="button" onClick={() => handleDelete(index)}
+                    className="delete-button">
                       <FontAwesomeIcon icon={faTrash} /> Delete
                     </button>
                   )}

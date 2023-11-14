@@ -1,6 +1,4 @@
-// components/ExperienceForm.jsx
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronDown,
@@ -11,15 +9,30 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const ExperienceForm = ({ onUpdate }) => {
-  const [experience, setExperience] = useState([
-    {
-      company: "",
-      role: "",
-      startDate: "",
-      endDate: "",
-      description: "",
-    },
-  ]);
+  const [experience, setExperience] = useState([]);
+  const [isFormVisible, setIsFormVisible] = useState(false);
+  const [hasChanges, setHasChanges] = useState(false);
+
+  useEffect(() => {
+    // Cargar los datos guardados desde localStorage cuando se monta el componente
+    const savedExperience = localStorage.getItem("experience");
+    if (savedExperience) {
+      setExperience(JSON.parse(savedExperience));
+    }
+  }, []); // El segundo argumento [] indica que este efecto se ejecuta solo una vez al montar el componente.
+
+  const toggleFormVisibility = () => {
+    setIsFormVisible(!isFormVisible);
+  };
+
+  const handleChange = (event, index) => {
+    const { name, value } = event.target;
+    const updatedExperiences = [...experience];
+    updatedExperiences[index] = { ...updatedExperiences[index], [name]: value };
+    setExperience(updatedExperiences);
+    onUpdate(updatedExperiences);
+    setHasChanges(true);
+  };
 
   const handleAddExperience = () => {
     setExperience([
@@ -41,24 +54,6 @@ const ExperienceForm = ({ onUpdate }) => {
       setExperience(updatedExperiences);
       onUpdate(updatedExperiences);
     }
-  };
-
-  const [isFormVisible, setIsFormVisible] = useState(false);
-  const [hasChanges, setHasChanges] = useState(false);
-
-  
-
-  const toggleFormVisibility = () => {
-    setIsFormVisible(!isFormVisible);
-  };
-
-  const handleChange = (event, index) => {
-    const { name, value } = event.target;
-    const updatedExperiences = [...experience];
-    updatedExperiences[index] = { ...updatedExperiences[index], [name]: value };
-    setExperience(updatedExperiences);
-    onUpdate(updatedExperiences);
-    setHasChanges(true);
   };
 
   const handleSave = () => {
@@ -133,30 +128,29 @@ const ExperienceForm = ({ onUpdate }) => {
                     </button>
                   )}
                   {experience.length > 1 && (
-                    <button type="button" onClick={() => handleDelete(index)}>
+                    <button type="button" onClick={() => handleDelete(index)}
+                    className="delete-button" >
                       <FontAwesomeIcon icon={faTrash} /> Delete
                     </button>
                   )}
                   <button
-                type="button"
-                onClick={handleSave}
-                disabled={!hasChanges}
-                className={hasChanges ? "" : "saved-button"}
-              >
-                {hasChanges ? (
-                  <>
-                    <FontAwesomeIcon icon={faSave} /> Save
-                  </>
-                ) : (
-                  "Saved"
-                )}
-              </button>
+                    type="button"
+                    onClick={handleSave}
+                    disabled={!hasChanges}
+                    className={hasChanges ? "" : "saved-button"}
+                  >
+                    {hasChanges ? (
+                      <>
+                        <FontAwesomeIcon icon={faSave} /> Save
+                      </>
+                    ) : (
+                      "Saved"
+                    )}
+                  </button>
                 </div>
               </div>
             ))}
-
           </form>
-          {/* <button type="submit">Submit</button> */}
         </div>
       )}
     </div>
