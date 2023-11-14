@@ -1,6 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronUp, faPlus, faTrash, faSave } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronDown,
+  faChevronUp,
+  faPlus,
+  faTrash,
+  faSave,
+} from "@fortawesome/free-solid-svg-icons";
 
 const EducationForm = ({ onUpdate }) => {
   const [educationList, setEducationList] = useState([
@@ -11,6 +17,14 @@ const EducationForm = ({ onUpdate }) => {
       graduationYear: "",
     },
   ]);
+
+  useEffect(() => {
+    // Cargar los datos guardados desde localStorage cuando se monta el componente
+    const savedEducation = localStorage.getItem("education");
+    if (savedEducation) {
+      setEducationList(JSON.parse(savedEducation));
+    }
+  }, []);
 
   const handleAddEducation = () => {
     setEducationList([
@@ -73,7 +87,7 @@ const EducationForm = ({ onUpdate }) => {
                   <input
                     type="text"
                     name="schoolName"
-                    value={education.schoolName}
+                    value={education.schoolName} // Establece el valor del campo
                     onChange={(e) => handleChange(e, index)}
                   />
                 </div>
@@ -82,7 +96,7 @@ const EducationForm = ({ onUpdate }) => {
                   <input
                     type="text"
                     name="degree"
-                    value={education.degree}
+                    value={education.degree} // Establece el valor del campo
                     onChange={(e) => handleChange(e, index)}
                   />
                 </div>
@@ -91,7 +105,7 @@ const EducationForm = ({ onUpdate }) => {
                   <input
                     type="text"
                     name="major"
-                    value={education.major}
+                    value={education.major} // Establece el valor del campo
                     onChange={(e) => handleChange(e, index)}
                   />
                 </div>
@@ -100,7 +114,7 @@ const EducationForm = ({ onUpdate }) => {
                   <input
                     type="text"
                     name="graduationYear"
-                    value={education.graduationYear}
+                    value={education.graduationYear} // Establece el valor del campo
                     onChange={(e) => handleChange(e, index)}
                   />
                 </div>
@@ -111,8 +125,11 @@ const EducationForm = ({ onUpdate }) => {
                     </button>
                   )}
                   {educationList.length > 1 && (
-                    <button type="button" onClick={() => handleDelete(index)}
-                    className="delete-button">
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(index)}
+                      className="delete-button"
+                    >
                       <FontAwesomeIcon icon={faTrash} /> Delete
                     </button>
                   )}

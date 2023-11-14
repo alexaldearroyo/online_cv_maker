@@ -241,20 +241,12 @@ button:hover {
 .saved-button:disabled {
   background-color: #ccc;
   box-shadow: inset 0 0 0 1px black;
-  cursor: not-allowed;
+  cursor: default;
   color: black;
 }
 
-/* .delete-button {
-  background-color: transparent;
-  color: black;
-  border: none;
-  cursor: pointer;
-  transition: color 0.3s;
-} */
-
 .delete-button:hover {
-  background-color: rgb(122, 22, 22) !important;
+  background-color: rgb(163, 38, 38) !important;
 }
 
 
