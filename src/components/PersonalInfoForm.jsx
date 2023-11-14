@@ -1,6 +1,4 @@
-// components/PersonalInfoForm.jsx
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,6 +11,15 @@ const PersonalInfoForm = ({ onUpdate }) => {
   });
 
   const [isFormVisible, setIsFormVisible] = useState(false);
+  const [hasChanges, setHasChanges] = useState(false); // Estado para rastrear los cambios
+
+  // Al cargar el componente, intentamos obtener los datos del localStorage
+  useEffect(() => {
+    const savedData = localStorage.getItem("personalInfo");
+    if (savedData) {
+      setPersonalInfo(JSON.parse(savedData));
+    }
+  }, []);
 
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
@@ -21,12 +28,14 @@ const PersonalInfoForm = ({ onUpdate }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setPersonalInfo({ ...personalInfo, [name]: value });
+    onUpdate({ ...personalInfo, [name]: value });
+    setHasChanges(true); // Marcar que se realizaron cambios
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    onUpdate(personalInfo);
-    setIsFormVisible(false);
+  const handleSave = () => {
+    // Guardar los datos en el localStorage
+    localStorage.setItem("personalInfo", JSON.stringify(personalInfo));
+    setHasChanges(false); // Marcar que los cambios se han guardado
   };
 
   return (
@@ -40,7 +49,7 @@ const PersonalInfoForm = ({ onUpdate }) => {
       </div>
       {isFormVisible && (
         <div className="form-container">
-          <form onSubmit={handleSubmit}>
+          <form>
             <div className="form-field">
               <label>Name:</label>
               <input
@@ -79,7 +88,15 @@ const PersonalInfoForm = ({ onUpdate }) => {
             </div>
             {/* Agrega más campos según sea necesario */}
 
-            <button type="submit">Submit</button>
+            {/* Cambiar el botón "Submit" por "Save" o "Saved" */}
+            <button
+              type="button"
+              onClick={handleSave}
+              disabled={!hasChanges} // Deshabilitar si no hay cambios
+              className={hasChanges ? "" : "saved-button"} // Aplicar estilo "saved-button" si no hay cambios
+            >
+              {hasChanges ? "Save" : "Saved"}
+            </button>
           </form>
         </div>
       )}

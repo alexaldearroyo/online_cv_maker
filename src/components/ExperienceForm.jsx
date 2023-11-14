@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faChevronUp, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const ExperienceForm = ({ onUpdate }) => {
   const [experience, setExperience] = useState([
@@ -29,8 +29,8 @@ const ExperienceForm = ({ onUpdate }) => {
   };
 
   const handleDelete = (index) => {
-    const updatedExperiences = [...experience];
-    if (updatedExperiences.length > 1) {
+    if (experience.length > 1) {
+      const updatedExperiences = [...experience];
       updatedExperiences.splice(index, 1);
       setExperience(updatedExperiences);
       onUpdate(updatedExperiences);
@@ -48,12 +48,12 @@ const ExperienceForm = ({ onUpdate }) => {
     const updatedExperiences = [...experience];
     updatedExperiences[index] = { ...updatedExperiences[index], [name]: value };
     setExperience(updatedExperiences);
+    onUpdate(updatedExperiences);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     onUpdate(experience);
-    // setIsFormVisible(false);
   };
 
   return (
@@ -117,19 +117,23 @@ const ExperienceForm = ({ onUpdate }) => {
                   </div>
                 </div>
                 <div className="button-container">
-                  <button type="button" onClick={handleAddExperience}>
-                    New
-                  </button>
-                  <button type="button" onClick={() => handleDelete(index)}>
-                    Delete
-                  </button>
-                     <button type="submit">Submit</button>
+                  {index === experience.length - 1 && (
+                    <button type="button" onClick={handleAddExperience}>
+                      <FontAwesomeIcon icon={faPlus} /> New
+                    </button>
+                  )}
+                  {experience.length > 1 && (
+                    <button type="button" onClick={() => handleDelete(index)}>
+                      <FontAwesomeIcon icon={faTrash} /> Delete
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
 
-         
+            {/* Mueve el botón de submit fuera del map */}
           </form>
+          {/* <button type="submit">Submit</button> */}
         </div>
       )}
     </div>
