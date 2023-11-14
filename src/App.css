@@ -36,21 +36,21 @@ h2 {
 .app-container {
   background: #D9D9D9;
   display: flex;
-  width: 100%;
-  align-items: center;
+  /* width: 100%; */
+  align-items: stretch;
   justify-self: center;
   flex-wrap: wrap;
   flex-grow: 1;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding: 2rem;
+  gap: 2rem;
 }
 
 .form-panel, .preview-panel {
   flex: 1;
   min-height: 80%;
   width: 90%;
-  margin-left: 2rem;
-  margin-right: 2rem;
+  /* margin-left: 2rem; */
+  /* margin-right: 2rem; */
   box-sizing: border-box;
   background-color: white;
   padding: 2rem;

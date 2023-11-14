@@ -7,7 +7,7 @@ import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 const ExperienceForm = ({ onUpdate }) => {
   const [experience, setExperience] = useState([
     {
-      companyName: "",
+      company: "",
       role: "",
       startDate: "",
       endDate: "",
@@ -52,8 +52,8 @@ const ExperienceForm = ({ onUpdate }) => {
                 <label>Company Name:</label>
                 <input
                   type="text"
-                  name="companyName"
-                  value={exp.companyName}
+                  name="company"
+                  value={exp.company}
                   onChange={(e) => handleChange(e, index)}
                 />
               </div>
