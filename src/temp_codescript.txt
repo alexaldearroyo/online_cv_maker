@@ -47,29 +47,32 @@ App.css:
 .App {
   text-align: center;
   font-family: 'Arial', sans-serif;
-  background: #D9D9D9;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  min-height: 100vh;
-
+  height: 100vh;
+  width: 100%;
+  flex-grow: 1;
+  background: #D9D9D9;
+  /* align-items: center;
+  justify-content: center; */
 }
-
 
 .App-header {
   background-color: white;
   color: black;
   border-bottom: black 3px solid;
   padding: 20px 0;
-  margin-bottom: 30px;
   width: 100%;
+  height: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .App-header h1 {
   margin: 0;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
 }
-
 
 h2 {
   color: #333;
@@ -80,20 +83,23 @@ h2 {
 }
 
 .app-container {
+  background: #D9D9D9;
   display: flex;
-  width: 100%;
-  flex-direction: row;
-  justify-content: center;
+  /* width: 100%; */
+  align-items: stretch;
+  justify-self: center;
   flex-wrap: wrap;
-  margin-bottom: 2rem;
+  flex-grow: 1;
+  padding: 2rem;
+  gap: 2rem;
 }
 
-.form-panel {
+.form-panel, .preview-panel {
   flex: 1;
-  padding: 20px;
-  max-width: 90%;
-  margin-left: 2rem;
-  margin-right: 2rem;
+  min-height: 80%;
+  width: 90%;
+  /* margin-left: 2rem; */
+  /* margin-right: 2rem; */
   box-sizing: border-box;
   background-color: white;
   padding: 2rem;
@@ -102,38 +108,33 @@ h2 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(30, 11, 11, 0.2);
 }
 
 .preview-panel {
-  flex: 1;
-  padding: 20px;
-  max-width: 90%;
-  box-sizing: border-box;
-  margin-left: 2rem;
-  margin-right: 2rem;
-  background-color: white;
+  justify-content: flex-start;
+}
+
+.Labels {
+  width: 100%;
   display: flex;
-  border: 3px solid black;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .title-button {
   width: 90%;
-  /* margin: 1rem auto; */
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;  
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
   border: 1px solid black;
-  padding: 10px;
+  padding: 0.75rem;
   border-radius: 4px;
   background-color: #f8f8f8;
   max-height: 20px;
-  margin: 1rem 2rem;
   margin-top: 0;
 }
 
@@ -141,74 +142,107 @@ h2 {
   background-color: #e9e9e9;
 }
 
+.title-button.expanded {
+  border-bottom: 1px solid black;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: 0;
+}
 
-form { 
-  width: 600px;
-  margin: auto;
-  padding: 15px;
-  background: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-wrap: wrap;
+.form-container {
+  border: 1px solid black;
+  border-radius: 4px;
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  margin-top: 0;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #f8f8f8;
+  padding: 0.75rem;
+  display: block;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-  text-align: left;
   margin-bottom: 1rem;
-  overflow: auto;
+  flex-grow: 0;
 }
 
-.form-field {
+/* .form-field {
   display: flex;
-  flex-direction: row; /* Organiza los elementos en fila */
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
   margin-bottom: 10px;
-  max-width: 100%;
-  overflow: auto;
-}
+  width: 100%;
+  /* overflow: auto; */
 
-label {
-  /* display: block; */
-  margin-bottom: 8px;
-  margin-right: 8px;
-  white-space: nowrap;
-  flex-basis: 30%;
+
+.form-field label {
+  flex-basis: 10%;
   margin-right: 10px;
   text-align: right;
+  white-space: nowrap;
   max-width: 100%;
+  margin: 150px;
 }
 
-
-input[type="text"], input[type="email"], input[type="tel"] {
-  /* width: 100%; */
-  flex-grow: 1;
+textarea,
+.form-field input[type="text"],
+.form-field input[type="email"],
+.form-field input[type="tel"],
+.form-field input[type="date"]
+{
+  width: 90%;
+  max-width: 400px;
+  flex-grow: 0;
   font-size: 1rem;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
+  margin: 5px 0;
+  border: 1px solid black;
   border-radius: 4px;
-  max-width: 100%;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.textarea-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  resize: vertical;
 }
 
 button {
-  background-color: #28a745;
+  background-color: black;
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 button:hover {
-  background-color: #218838;
+  background-color: rgb(33, 50, 136);
 }
 
-@media (max-width: 768px) { 
+@media (max-width: 768px) {
+  .App {
+    height: 100%;
+  }
+  
   .app-container {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
     gap: 0.25rem;
     margin-bottom: 2rem;
   }
@@ -221,21 +255,207 @@ button:hover {
     margin-bottom: 2rem;
   }
 }
+
 ----------------------------------------
 
-components/PersonalInfoForm.jsx:
+components/ResumeForm.jsx:
+
+import React, { useState } from "react";
+
+import PersonalInfoForm from "./PersonalInfoForm";
+import ExperienceForm from "./ExperienceForm";
+import EducationForm from "./EducationForm";
+import SkillsForm from "./SkillsForm";
+import ProjectsForm from "./ProjectsForm";
+import CertificatesForm from "./CertificatesForm";
+import LanguagesForm from "./LanguagesForm";
+
+const ResumeForm = ({ onDataChange }) => {
+  const [resumeData, setResumeData] = useState({
+    personalInfo: {},
+    experience: [],
+    education: [],
+    skills: [],
+    projects: [],
+    certificates: [],
+    languages: [],
+  });
+
+  const handlePersonalInfoUpdate = (newPersonalInfo) => {
+    setResumeData({ ...resumeData, personalInfo: newPersonalInfo });
+    onDataChange({ ...resumeData, personalInfo: newPersonalInfo });
+  };
+
+  const handleExperienceUpdate = (newExperience) => {
+    setResumeData({ ...resumeData, experience: newExperience });
+    onDataChange({ ...resumeData, experience: newExperience });
+  };
+
+  const handleEducationUpdate = (newEducation) => {
+    setResumeData({ ...resumeData, education: newEducation });
+    onDataChange({ ...resumeData, education: newEducation });
+  };
+
+  const handleSkillsUpdate = (newSkills) => {
+    setResumeData({ ...resumeData, skills: newSkills });
+    onDataChange({ ...resumeData, skills: newSkills });
+  };
+
+  const handleProjectsUpdate = (newProjects) => {
+    setResumeData({ ...resumeData, projects: newProjects });
+    onDataChange({ ...resumeData, projects: newProjects });
+  };
+
+  const handleCertificatesUpdate = (newCertificates) => {
+    setResumeData({ ...resumeData, certificates: newCertificates });
+    onDataChange({ ...resumeData, certificates: newCertificates });
+  };
+
+  const handleLanguagesUpdate = (newLanguages) => {
+    setResumeData({ ...resumeData, languages: newLanguages });
+    onDataChange({ ...resumeData, languages: newLanguages });
+  };
+
+  return (
+    <div className="Labels">
+      <PersonalInfoForm onUpdate={handlePersonalInfoUpdate} />
+      <ExperienceForm onUpdate={handleExperienceUpdate} />
+      <EducationForm onUpdate={handleEducationUpdate} />
+      <SkillsForm onUpdate={handleSkillsUpdate} />
+      <ProjectsForm onUpdate={handleProjectsUpdate} />
+      <CertificatesForm onUpdate={handleCertificatesUpdate} />
+      <LanguagesForm onUpdate={handleLanguagesUpdate} />
+    </div>
+  );
+};
+
+export default ResumeForm;
+
+----------------------------------------
+
+components/ResumePreview.jsx:
+
+import React from 'react';
+
+const ResumePreview = ({ data }) => {
+  return (
+    <div>
+        <h2>Resume Preview</h2>
+
+        <div>
+            <h3>Personal Information</h3>
+            <p>Name: {data.personalInfo?.firstName} {data.personalInfo?.lastName}</p>
+            <p>Email: {data.personalInfo?.email}</p>
+            <p>Phone: {data.personalInfo?.phoneNumber}</p>
+        </div>
+
+        <div>
+            <h3>Work Experience</h3>
+            {data.experience?.map((exp, index) => (
+                <div key={index}>
+                    <p>{exp.position} at {exp.company}</p>
+                    <p>From: {exp.startDate} To: {exp.endDate}</p>
+                    <p>Description: {exp.description}</p>
+                </div>
+            ))}
+        </div>
+
+        <div>
+            <h3>Education</h3>
+            {data.education?.map((edu, index) => (
+                <div key={index}>
+                    <p>{edu.degree} at {edu.institution}</p>
+                    <p>Year of completion: {edu.year}</p>
+                </div>
+            ))}
+        </div>
+
+        <div>
+            <h3>Skills</h3>
+            {data.skills?.map((skill, index) => (
+                <div key={index}>
+                    <p>{skill}</p>
+                </div>
+            ))}
+        </div>
+
+        <div>
+            <h3>Projects</h3>
+            {data.projects?.map((project, index) => (
+                <div key={index}>
+                    <p>{project.name}</p>
+                    <p>Description: {project.description}</p>
+                </div>
+            ))}
+        </div>
+
+        <div>
+            <h3>Certificates</h3>
+            {data.certificates?.map((certificate, index) => (
+                <div key={index}>
+                    <p>{certificate.name}</p>
+                    <p>From: {certificate.institution}</p>
+                    <p>Year: {certificate.year}</p>
+                </div>
+            ))}
+        </div>
+
+        <div>
+            <h3>Languages</h3>
+            {data.languages?.map((language, index) => (
+                <div key={index}>
+                    <p>{language.name}</p>
+                    <p>Level: {language.level}</p>
+                </div>
+            ))}
+        </div>
+
+    </div>
+  );
+};
+
+export default ResumePreview;
+
+----------------------------------------
+
+components/ExperienceForm.jsx:
+
+// components/ExperienceForm.jsx
 
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
-const PersonalInfoForm = ({ onUpdate }) => {
-  const [personalInfo, setPersonalInfo] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phoneNumber: "",
-  });
+const ExperienceForm = ({ onUpdate }) => {
+  const [experience, setExperience] = useState([
+    {
+      company: "",
+      role: "",
+      startDate: "",
+      endDate: "",
+      description: "",
+    },
+  ]);
+
+  const handleAddExperience = () => {
+    setExperience([...experience, {
+      company: "",
+      role: "",
+      startDate: "",
+      endDate: "",
+      description: "",
+    }]);
+  };
+  
+  const handleDelete = (index) => {
+    const updatedExperiences = [...experience];
+    updatedExperiences.splice(index, 1);
+    setExperience(updatedExperiences);
+    onUpdate(updatedExperiences);
+
+  };
+  
+
 
   const [isFormVisible, setIsFormVisible] = useState(false);
 
@@ -243,70 +463,97 @@ const PersonalInfoForm = ({ onUpdate }) => {
     setIsFormVisible(!isFormVisible);
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event, index) => {
     const { name, value } = event.target;
-    setPersonalInfo({ ...personalInfo, [name]: value });
+    const updatedExperiences = [...experience];
+    updatedExperiences[index] = { ...updatedExperiences[index], [name]: value };
+    setExperience(updatedExperiences);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onUpdate(personalInfo);
+    onUpdate(experience);
+    // setIsFormVisible(false);
   };
 
   return (
     <div>
-      <div className="title-button" onClick={toggleFormVisibility}>
-        <h2>Personal Information</h2>
+      <div
+        className={`title-button ${isFormVisible ? "expanded" : ""}`}
+        onClick={toggleFormVisibility}
+      >
+        <h2>Experience</h2>
         <FontAwesomeIcon icon={isFormVisible ? faChevronUp : faChevronDown} />
       </div>
       {isFormVisible && (
+        <div className="form-container">
         <form onSubmit={handleSubmit}>
-          <div>
-            <label>Name:</label>
-            <input
-              type="text"
-              name="firstName"
-              value={personalInfo.firstName}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Surname:</label>
-            <input
-              type="text"
-              name="lastName"
-              value={personalInfo.lastName}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Email:</label>
-            <input
-              type="email"
-              name="email"
-              value={personalInfo.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Phone:</label>
-            <input
-              type="tel"
-              name="phoneNumber"
-              value={personalInfo.phoneNumber}
-              onChange={handleChange}
-            />
-          </div>
-          {/* Agrega más campos según sea necesario */}
+          {experience.map((exp, index) => (
+            <div key={index}>
+              <div className="form-field">
+                <label>Company Name:</label>
+                <input
+                  type="text"
+                  name="company"
+                  value={exp.company}
+                  onChange={(e) => handleChange(e, index)}
+                />
+              </div>
+              <div className="form-field">
+                <label>Role:</label>
+                <input
+                  type="text"
+                  name="role"
+                  value={exp.role}
+                  onChange={(e) => handleChange(e, index)}
+                />
+              </div>
+              <div className="form-field">
+                <label>Start Date:</label>
+                <input
+                  type="date"
+                  name="startDate"
+                  value={exp.startDate}
+                  onChange={(e) => handleChange(e, index)}
+                />
+              </div>
+              <div className="form-field">
+                <label>End Date:</label>
+                <input
+                  type="date"
+                  name="endDate"
+                  value={exp.endDate}
+                  onChange={(e) => handleChange(e, index)}
+                />
+              </div>
+              <div className="form-field">
+                <label>Description:</label>
+                <div className="textarea-container">
+                <textarea
+                  name="description"
+                  value={exp.description}
+                  onChange={(e) => handleChange(e, index)}
+                />
+                </div>
+              </div>
+              <button type="button" onClick={() => handleDelete(index)}>
+          Delete
+        </button>
+        <button type="button" onClick={handleAddExperience}>
+      Add
+    </button>
+            </div>
+          ))}
 
           <button type="submit">Submit</button>
         </form>
+      </div>
       )}
     </div>
   );
 };
 
-export default PersonalInfoForm;
+export default ExperienceForm;
 
 ----------------------------------------
 

@@ -15,6 +15,28 @@ const ExperienceForm = ({ onUpdate }) => {
     },
   ]);
 
+  const handleAddExperience = () => {
+    setExperience([
+      ...experience,
+      {
+        company: "",
+        role: "",
+        startDate: "",
+        endDate: "",
+        description: "",
+      },
+    ]);
+  };
+
+  const handleDelete = (index) => {
+    const updatedExperiences = [...experience];
+    if (updatedExperiences.length > 1) {
+      updatedExperiences.splice(index, 1);
+      setExperience(updatedExperiences);
+      onUpdate(updatedExperiences);
+    }
+  };
+
   const [isFormVisible, setIsFormVisible] = useState(false);
 
   const toggleFormVisibility = () => {
@@ -31,7 +53,7 @@ const ExperienceForm = ({ onUpdate }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     onUpdate(experience);
-    setIsFormVisible(false);
+    // setIsFormVisible(false);
   };
 
   return (
@@ -45,61 +67,70 @@ const ExperienceForm = ({ onUpdate }) => {
       </div>
       {isFormVisible && (
         <div className="form-container">
-        <form onSubmit={handleSubmit}>
-          {experience.map((exp, index) => (
-            <div key={index}>
-              <div className="form-field">
-                <label>Company Name:</label>
-                <input
-                  type="text"
-                  name="company"
-                  value={exp.company}
-                  onChange={(e) => handleChange(e, index)}
-                />
-              </div>
-              <div className="form-field">
-                <label>Role:</label>
-                <input
-                  type="text"
-                  name="role"
-                  value={exp.role}
-                  onChange={(e) => handleChange(e, index)}
-                />
-              </div>
-              <div className="form-field">
-                <label>Start Date:</label>
-                <input
-                  type="date"
-                  name="startDate"
-                  value={exp.startDate}
-                  onChange={(e) => handleChange(e, index)}
-                />
-              </div>
-              <div className="form-field">
-                <label>End Date:</label>
-                <input
-                  type="date"
-                  name="endDate"
-                  value={exp.endDate}
-                  onChange={(e) => handleChange(e, index)}
-                />
-              </div>
-              <div className="form-field">
-                <label>Description:</label>
-                <div className="textarea-container">
-                <textarea
-                  name="description"
-                  value={exp.description}
-                  onChange={(e) => handleChange(e, index)}
-                />
+          <form onSubmit={handleSubmit}>
+            {experience.map((exp, index) => (
+              <div key={index}>
+                <div className="form-field">
+                  <label>Company Name:</label>
+                  <input
+                    type="text"
+                    name="company"
+                    value={exp.company}
+                    onChange={(e) => handleChange(e, index)}
+                  />
+                </div>
+                <div className="form-field">
+                  <label>Role:</label>
+                  <input
+                    type="text"
+                    name="role"
+                    value={exp.role}
+                    onChange={(e) => handleChange(e, index)}
+                  />
+                </div>
+                <div className="form-field">
+                  <label>Start Date:</label>
+                  <input
+                    type="date"
+                    name="startDate"
+                    value={exp.startDate}
+                    onChange={(e) => handleChange(e, index)}
+                  />
+                </div>
+                <div className="form-field">
+                  <label>End Date:</label>
+                  <input
+                    type="date"
+                    name="endDate"
+                    value={exp.endDate}
+                    onChange={(e) => handleChange(e, index)}
+                  />
+                </div>
+                <div className="form-field">
+                  <label>Description:</label>
+                  <div className="textarea-container">
+                    <textarea
+                      name="description"
+                      value={exp.description}
+                      onChange={(e) => handleChange(e, index)}
+                    />
+                  </div>
+                </div>
+                <div className="button-container">
+                  <button type="button" onClick={handleAddExperience}>
+                    New
+                  </button>
+                  <button type="button" onClick={() => handleDelete(index)}>
+                    Delete
+                  </button>
+                     <button type="submit">Submit</button>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
 
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+         
+          </form>
+        </div>
       )}
     </div>
   );
