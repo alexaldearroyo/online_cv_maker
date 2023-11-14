@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
-const ExperienceForm = ({ onDataChange }) => {
+const ExperienceForm = ({ onUpdate }) => {
   const [experience, setExperience] = useState([
     {
       companyName: "",
@@ -30,7 +30,7 @@ const ExperienceForm = ({ onDataChange }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onDataChange(experience);
+    onUpdate(experience);
     setIsFormVisible(false);
   };
 

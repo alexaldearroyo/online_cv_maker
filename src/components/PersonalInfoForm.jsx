@@ -12,7 +12,7 @@ const PersonalInfoForm = ({ onUpdate }) => {
     phoneNumber: "",
   });
 
-  const [isFormVisible, setIsFormVisible] = useState(true);
+  const [isFormVisible, setIsFormVisible] = useState(false);
 
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
