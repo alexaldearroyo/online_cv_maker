@@ -4,8 +4,11 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  width: 100%;
   flex-grow: 1;
   background: #D9D9D9;
+  /* align-items: center;
+  justify-content: center; */
 }
 
 .App-header {
@@ -33,19 +36,19 @@ h2 {
 .app-container {
   background: #D9D9D9;
   display: flex;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
   width: 100%;
   align-items: center;
   justify-self: center;
   flex-wrap: wrap;
   flex-grow: 1;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .form-panel, .preview-panel {
   flex: 1;
-  min-height: 75%;
-  max-width: 90%;
+  min-height: 80%;
+  width: 90%;
   margin-left: 2rem;
   margin-right: 2rem;
   box-sizing: border-box;
@@ -100,16 +103,17 @@ h2 {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   margin-top: 0;
-  width: 90%;
+  max-width: 90%;
   margin-left: auto;
   margin-right: auto;
   background-color: #f8f8f8;
   padding: 0.75rem;
-  display: flex;
+  display: block;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
+  flex-grow: 0;
 }
 
 /* .form-field {
@@ -120,7 +124,7 @@ h2 {
   margin-bottom: 10px;
   width: 100%;
   /* overflow: auto; */
-/* } */ 
+
 
 .form-field label {
   flex-basis: 10%;
@@ -128,21 +132,37 @@ h2 {
   text-align: right;
   white-space: nowrap;
   max-width: 100%;
+  margin: 150px;
 }
 
+textarea,
 .form-field input[type="text"],
 .form-field input[type="email"],
-.form-field input[type="tel"] {
-  width: 100%;
-  /* flex-grow: 1; */
+.form-field input[type="tel"],
+.form-field input[type="date"]
+{
+  width: 90%;
+  max-width: 400px;
+  flex-grow: 0;
   font-size: 1rem;
   box-sizing: border-box;
   padding: 10px;
   margin: 5px 0;
   border: 1px solid black;
-  max-width: 100%;
   border-radius: 4px;
+}
 
+textarea {
+  resize: vertical;
+}
+
+.textarea-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  resize: vertical;
 }
 
 button {

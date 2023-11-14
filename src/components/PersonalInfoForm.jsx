@@ -1,3 +1,5 @@
+// components/PersonalInfoForm.jsx
+
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
@@ -10,7 +12,7 @@ const PersonalInfoForm = ({ onUpdate }) => {
     phoneNumber: "",
   });
 
-  const [isFormVisible, setIsFormVisible] = useState(false);
+  const [isFormVisible, setIsFormVisible] = useState(true);
 
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
@@ -24,12 +26,13 @@ const PersonalInfoForm = ({ onUpdate }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     onUpdate(personalInfo);
+    setIsFormVisible(false);
   };
 
   return (
     <div>
-       <div
-        className={`title-button ${isFormVisible ? "expanded" : ""}`} 
+      <div
+        className={`title-button ${isFormVisible ? "expanded" : ""}`}
         onClick={toggleFormVisibility}
       >
         <h2>Personal Information</h2>

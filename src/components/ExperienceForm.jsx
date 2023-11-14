@@ -31,15 +31,20 @@ const ExperienceForm = ({ onDataChange }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     onDataChange(experience);
+    setIsFormVisible(false);
   };
 
   return (
     <div>
-      <div className="title-button" onClick={toggleFormVisibility}>
+      <div
+        className={`title-button ${isFormVisible ? "expanded" : ""}`}
+        onClick={toggleFormVisibility}
+      >
         <h2>Experience</h2>
         <FontAwesomeIcon icon={isFormVisible ? faChevronUp : faChevronDown} />
       </div>
       {isFormVisible && (
+        <div className="form-container">
         <form onSubmit={handleSubmit}>
           {experience.map((exp, index) => (
             <div key={index}>
@@ -81,17 +86,20 @@ const ExperienceForm = ({ onDataChange }) => {
               </div>
               <div className="form-field">
                 <label>Description:</label>
+                <div className="textarea-container">
                 <textarea
                   name="description"
                   value={exp.description}
                   onChange={(e) => handleChange(e, index)}
                 />
+                </div>
               </div>
             </div>
           ))}
 
           <button type="submit">Submit</button>
         </form>
+      </div>
       )}
     </div>
   );
