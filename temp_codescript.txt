@@ -47,23 +47,21 @@ src/App.css:
 .App {
   text-align: center;
   font-family: 'Arial', sans-serif;
-  background: #D9D9D9;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* height: 100vh; */
-
+  height: 100vh;
+  flex-grow: 1;
+  background: #D9D9D9;
 }
 
 
 .App-header {
   background-color: white;
   color: black;
-  border: black 3px solid;
+  border-bottom: black 3px solid;
   padding: 20px 0;
-  margin-bottom: 30px;
   width: 100%;
+  height: 5%;
 }
 
 .App-header h1 {
@@ -81,34 +79,52 @@ h2 {
 }
 
 .app-container {
+  background: #D9D9D9;
   display: flex;
-  height: 100vh;
-  flex-direction: row;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  width: 100%;
+  /* height: 100vh; */
+  align-items: center;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+.form-panel, .preview-panel {
+  flex: 1;
+  min-height: 75%;
+  max-width: 90%;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  box-sizing: border-box;
+  background-color: white;
+  padding: 2rem;
+  display: flex;
+  border: 3px solid black;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-.form-panel {
-  flex: 1;
-  border-right: 1px solid #ccc;
-  padding: 20px;
-}
-
-.preview-panel {
-  flex: 1;
-  padding: 20px;
+.Labels {
+  width: 100%;
 }
 
 .title-button {
-  min-width: 600px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  border: 1px solid #ddd;
+  border: 1px solid black;
   padding: 10px;
   border-radius: 4px;
   background-color: #f8f8f8;
-  margin: 1rem 2rem;
+  max-height: 20px;
+  margin: 1rem;
   margin-top: 0;
 }
 
@@ -117,12 +133,12 @@ h2 {
 }
 
 
-form {
-  width: 600px;
-  margin: auto;
+form { 
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
   padding: 15px;
   background: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -130,12 +146,11 @@ form {
   align-items: center;
   text-align: left;
   margin-bottom: 1rem;
-  overflow: auto;
 }
 
 .form-field {
   display: flex;
-  flex-direction: row; /* Organiza los elementos en fila */
+  flex-direction: row;
   align-items: center;
   margin-bottom: 10px;
   max-width: 100%;
@@ -143,7 +158,7 @@ form {
 }
 
 label {
-  /* display: block; */
+  display: block;
   margin-bottom: 8px;
   margin-right: 8px;
   white-space: nowrap;
@@ -155,7 +170,7 @@ label {
 
 
 input[type="text"], input[type="email"], input[type="tel"] {
-  /* width: 100%; */
+  width: 100%;
   flex-grow: 1;
   font-size: 1rem;
   box-sizing: border-box; 
@@ -179,6 +194,195 @@ button {
 button:hover {
   background-color: #218838;
 }
+
+@media (max-width: 768px) { 
+  .App {
+    height: 100%;
+  }
+
+  .App-header {
+    margin-bottom: 5%;
+  }
+
+  .app-container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    margin-bottom: 2rem;
+    
+  }
+
+  .form-panel, .preview-panel {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    flex-basis: auto;
+    margin-bottom: 2rem;
+  }
+}
+----------------------------------------
+
+src/components/ResumeForm.jsx:
+
+import React, { useState } from "react";
+
+import PersonalInfoForm from "./PersonalInfoForm";
+import ExperienceForm from "./ExperienceForm";
+import EducationForm from "./EducationForm";
+import SkillsForm from "./SkillsForm";
+import ProjectsForm from "./ProjectsForm";
+import CertificatesForm from "./CertificatesForm";
+import LanguagesForm from "./LanguagesForm";
+
+const ResumeForm = ({ onDataChange }) => {
+  const [resumeData, setResumeData] = useState({
+    personalInfo: {},
+    experience: [],
+    education: [],
+    skills: [],
+    projects: [],
+    certificates: [],
+    languages: [],
+  });
+
+  const handlePersonalInfoUpdate = (newPersonalInfo) => {
+    setResumeData({ ...resumeData, personalInfo: newPersonalInfo });
+    onDataChange({ ...resumeData, personalInfo: newPersonalInfo });
+  };
+
+  const handleExperienceUpdate = (newExperience) => {
+    setResumeData({ ...resumeData, experience: newExperience });
+    onDataChange({ ...resumeData, experience: newExperience });
+  };
+
+  const handleEducationUpdate = (newEducation) => {
+    setResumeData({ ...resumeData, education: newEducation });
+    onDataChange({ ...resumeData, education: newEducation });
+  };
+
+  const handleSkillsUpdate = (newSkills) => {
+    setResumeData({ ...resumeData, skills: newSkills });
+    onDataChange({ ...resumeData, skills: newSkills });
+  };
+
+  const handleProjectsUpdate = (newProjects) => {
+    setResumeData({ ...resumeData, projects: newProjects });
+    onDataChange({ ...resumeData, projects: newProjects });
+  };
+
+  const handleCertificatesUpdate = (newCertificates) => {
+    setResumeData({ ...resumeData, certificates: newCertificates });
+    onDataChange({ ...resumeData, certificates: newCertificates });
+  };
+
+  const handleLanguagesUpdate = (newLanguages) => {
+    setResumeData({ ...resumeData, languages: newLanguages });
+    onDataChange({ ...resumeData, languages: newLanguages });
+  };
+
+  return (
+    <div className="Labels">
+      <PersonalInfoForm onUpdate={handlePersonalInfoUpdate} />
+      <ExperienceForm onUpdate={handleExperienceUpdate} />
+      <EducationForm onUpdate={handleEducationUpdate} />
+      <SkillsForm onUpdate={handleSkillsUpdate} />
+      <ProjectsForm onUpdate={handleProjectsUpdate} />
+      <CertificatesForm onUpdate={handleCertificatesUpdate} />
+      <LanguagesForm onUpdate={handleLanguagesUpdate} />
+    </div>
+  );
+};
+
+export default ResumeForm;
+
+----------------------------------------
+
+src/components/PersonalInfoForm.jsx:
+
+import React, { useState } from "react";
+import { useForm }  from "react-hook-form";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+
+const PersonalInfoForm = ({ onUpdate }) => {
+  const [personalInfo, setPersonalInfo] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+  });
+
+  const [isFormVisible, setIsFormVisible] = useState(false);
+
+  const toggleFormVisibility = () => {
+    setIsFormVisible(!isFormVisible);
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setPersonalInfo({ ...personalInfo, [name]: value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onUpdate(personalInfo);
+  };
+
+  return (
+    <div>
+      <div className="title-button" onClick={toggleFormVisibility}>
+        <h2>Personal Information</h2>
+        <FontAwesomeIcon icon={isFormVisible ? faChevronUp : faChevronDown} />
+      </div>
+      {isFormVisible && (
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Name:</label>
+            <input
+              type="text"
+              name="firstName"
+              value={personalInfo.firstName}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label>Surname:</label>
+            <input
+              type="text"
+              name="lastName"
+              value={personalInfo.lastName}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label>Email:</label>
+            <input
+              type="email"
+              name="email"
+              value={personalInfo.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label>Phone:</label>
+            <input
+              type="tel"
+              name="phoneNumber"
+              value={personalInfo.phoneNumber}
+              onChange={handleChange}
+            />
+          </div>
+          {/* Agrega más campos según sea necesario */}
+
+          <button type="submit">Submit</button>
+        </form>
+      )}
+    </div>
+  );
+};
+
+export default PersonalInfoForm;
 
 ----------------------------------------
 

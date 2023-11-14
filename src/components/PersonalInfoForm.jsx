@@ -28,52 +28,57 @@ const PersonalInfoForm = ({ onUpdate }) => {
 
   return (
     <div>
-      <div className="title-button" onClick={toggleFormVisibility}>
+       <div
+        className={`title-button ${isFormVisible ? "expanded" : ""}`} 
+        onClick={toggleFormVisibility}
+      >
         <h2>Personal Information</h2>
         <FontAwesomeIcon icon={isFormVisible ? faChevronUp : faChevronDown} />
       </div>
       {isFormVisible && (
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>Name:</label>
-            <input
-              type="text"
-              name="firstName"
-              value={personalInfo.firstName}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Surname:</label>
-            <input
-              type="text"
-              name="lastName"
-              value={personalInfo.lastName}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Email:</label>
-            <input
-              type="email"
-              name="email"
-              value={personalInfo.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Phone:</label>
-            <input
-              type="tel"
-              name="phoneNumber"
-              value={personalInfo.phoneNumber}
-              onChange={handleChange}
-            />
-          </div>
-          {/* Agrega más campos según sea necesario */}
+        <div className="form-container">
+          <form onSubmit={handleSubmit}>
+            <div className="form-field">
+              <label>Name:</label>
+              <input
+                type="text"
+                name="firstName"
+                value={personalInfo.firstName}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-field">
+              <label>Surname:</label>
+              <input
+                type="text"
+                name="lastName"
+                value={personalInfo.lastName}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-field">
+              <label>Email:</label>
+              <input
+                type="email"
+                name="email"
+                value={personalInfo.email}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-field">
+              <label>Phone:</label>
+              <input
+                type="tel"
+                name="phoneNumber"
+                value={personalInfo.phoneNumber}
+                onChange={handleChange}
+              />
+            </div>
+            {/* Agrega más campos según sea necesario */}
 
-          <button type="submit">Submit</button>
-        </form>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
       )}
     </div>
   );
