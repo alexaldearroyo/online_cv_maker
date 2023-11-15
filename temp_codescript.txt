@@ -1,38 +1,115 @@
 src/App.js:
 
-// import logo from './logo.svg';
-import "./App.css";
+// App.js
 
-import React, { useState } from "react";
+import "./App.css";
+import React, { useState, useEffect } from "react";
 import ResumeForm from "./components/ResumeForm";
 import ResumePreview from "./components/ResumePreview";
 
 function App() {
-  const [resumeData, setResumeData] = useState({
-    experience: [],
-    education: [],
-    skills: [],
-    projects: [],
-    certificates: [],
-    languages: [],
-  });
+  const [isScrolling, setIsScrolling] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setIsScrolling(true);
+    } else {
+      setIsScrolling(false);
+    }
+  };
+
+const [resumeData, setResumeData] = useState({
+  personalInfo: {
+    fullName: "",
+    email: "",
+    phoneNumber: "",
+    location: "",
+  },
+  experience: [],
+  education: [],
+  skills: [],
+  projects: [],
+  certificates: [],
+  languages: [],
+});
 
   const handleDataChange = (newData) => {
     setResumeData(newData);
   };
 
+  useEffect(() => {
+    const storedData = localStorage.getItem("resumeData");
+    if (storedData) {
+      setResumeData(JSON.parse(storedData));
+    }
+  }, []);
+
+  useEffect(() => {
+    const savedPersonalInfo = localStorage.getItem("personalInfo");
+    if (savedPersonalInfo) {
+      setResumeData((prevData) => ({
+        ...prevData,
+        personalInfo: JSON.parse(savedPersonalInfo),
+      }));
+    }
+  }, []);
+
+  useEffect(() => {
+    const savedExperience = localStorage.getItem("experience");
+    if (savedExperience) {
+      setResumeData((prevData) => ({
+        ...prevData,
+        experience: JSON.parse(savedExperience),
+      }));
+    }
+  }, []);
+
+  useEffect(() => {
+    const savedEducation = localStorage.getItem("education");
+    if (savedEducation) {
+      setResumeData((prevData) => ({
+        ...prevData,
+        education: JSON.parse(savedEducation),
+      }));
+    }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="App">
+    <div className={`App ${isScrolling ? "scrolling" : ""}`}>
+      {/* Barra fija con clase "visible" cuando se está haciendo scroll */}
+      <div className={`fixed-bar ${isScrolling ? "visible" : ""}`}></div>
+
       <header className="App-header">
         <h1>Online CV Maker</h1>
       </header>
+
       <div className="app-container">
-      <div className="form-panel">
-      <ResumeForm onDataChange={handleDataChange} />
-      </div>
-      <div className="preview-panel">
-      <ResumePreview data={resumeData} />
-      </div>
+        <div className="form-panel">
+          <div className="title-bar">
+            <p>Edit</p>
+          </div>
+
+          <div className="content">
+            <ResumeForm onDataChange={handleDataChange} />
+          </div>
+        </div>
+
+        <div className="preview-panel">
+          <div className="title-bar">
+            <p>View</p>
+          </div>
+
+          <div className="content">
+            <ResumePreview data={resumeData} />
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -44,16 +121,20 @@ export default App;
 
 src/App.css:
 
+/* App.css */
+
 .App {
   text-align: center;
   font-family: 'Arial', sans-serif;
   display: flex;
   flex-direction: column;
   height: 100vh;
+  width: 100%;
   flex-grow: 1;
   background: #D9D9D9;
+  /* align-items: center;
+  justify-content: center; */
 }
-
 
 .App-header {
   background-color: white;
@@ -61,14 +142,16 @@ src/App.css:
   border-bottom: black 3px solid;
   padding: 20px 0;
   width: 100%;
-  height: 5%;
+  height: 3%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .App-header h1 {
   margin: 0;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
 }
-
 
 h2 {
   color: #333;
@@ -78,53 +161,103 @@ h2 {
   cursor: pointer;
 }
 
+.fixed-bar {
+  width: 100%;
+  height: 20px;
+  background-color: #D9D9D9;
+  position: fixed;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.75s ease;
+}
+
+.fixed-bar.visible {
+  opacity: 1;
+}
+
+
 .app-container {
   background: #D9D9D9;
   display: flex;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  width: 100%;
-  /* height: 100vh; */
-  align-items: center;
+  align-items: stretch;
+  justify-self: center;
   flex-wrap: wrap;
   flex-grow: 1;
+  padding: 2rem;
+  gap: 2rem;
+  z-index: 0;
 }
 
-.form-panel, .preview-panel {
+.title-bar {
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  position: sticky;
+  top: 20px;
+  width: 100%;
+  z-index: 10;
+}
+
+.form-panel,
+.preview-panel {
   flex: 1;
-  min-height: 75%;
-  max-width: 90%;
-  margin-left: 2rem;
-  margin-right: 2rem;
+  min-height: 80%;
+  width: 90%;
   box-sizing: border-box;
   background-color: white;
-  padding: 2rem;
+  padding: 0;
   display: flex;
   border: 3px solid black;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
+  box-shadow: 0 4px 8px 0 rgba(30, 11, 11, 0.2);
+  position: relative;
+  margin-top: 3px;
+  z-index: 0;
+}
+
+
+.title-bar p {
+  margin: 0;
+  padding: 0.5rem;
+  text-align: center;
+  
+}
+
+.content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  flex-grow: 1;
+  width: 90%;
 }
 
 .Labels {
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .title-button {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 1rem;  
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
   border: 1px solid black;
-  padding: 10px;
+  padding: 0.75rem;
   border-radius: 4px;
   background-color: #f8f8f8;
   max-height: 20px;
-  margin: 1rem;
   margin-top: 0;
 }
 
@@ -132,85 +265,275 @@ h2 {
   background-color: #e9e9e9;
 }
 
-
-form { 
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 15px;
-  background: white;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: left;
-  margin-bottom: 1rem;
+.title-button.expanded {
+  border-bottom: 1px solid black;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: 0;
 }
 
-.form-field {
+.form-container {
+  border: 1px solid black;
+  border-radius: 4px;
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  margin-top: 0;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #f8f8f8;
+  padding: 0.75rem;
+  display: block;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  flex-grow: 0;
+}
+
+/* .form-field {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   margin-bottom: 10px;
-  max-width: 100%;
-  overflow: auto;
-}
+  width: 100%;
+  /* overflow: auto; */
 
-label {
-  display: block;
-  margin-bottom: 8px;
-  margin-right: 8px;
-  white-space: nowrap;
-  flex-basis: 30%;
+ 
+
+.form-field label {
+  flex-basis: 10%;
   margin-right: 10px;
   text-align: right;
+  white-space: nowrap;
   max-width: 100%;
+  margin: 150px;
+}
+
+textarea,
+.form-field input[type="text"],
+.form-field input[type="email"],
+.form-field input[type="tel"],
+.form-field input[type="date"]
+{
+  width: 90%;
+  max-width: 400px;
+  flex-grow: 0;
+  font-size: 1rem;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+textarea:last-child,
+.form-field input[type="text"]:last-child,
+.form-field input[type="email"]:last-child,
+.form-field input[type="tel"]:last-child,
+.form-field input[type="date"]:last-child {
+  margin-bottom: 1rem;
 }
 
 
-input[type="text"], input[type="email"], input[type="tel"] {
+textarea {
+  resize: vertical;
+}
+
+.textarea-container {
   width: 100%;
-  flex-grow: 1;
-  font-size: 1rem;
-  box-sizing: border-box; 
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  resize: vertical;
 }
 
 button {
-  background-color: #28a745;
+  background-color: black;
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 1rem;
+  /* margin-top: 1rem; */
+  /* margin-bottom: 1rem; */
+  min-width: 7rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  
 }
 
 button:hover {
-  background-color: #218838;
+  background-color: rgb(33, 50, 136);
 }
 
-@media (max-width: 768px) { 
+.saved-button:disabled {
+  background-color: #ccc;
+  box-shadow: inset 0 0 0 1px black;
+  cursor: default;
+  color: black;
+}
+
+.delete-button:hover {
+  background-color: rgb(163, 38, 38) !important;
+}
+
+.resume-container {
+  width: 100%;
+  /* margin: auto; */
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #333;
+  /* border: 1px solid #ddd; */
+  padding: 20px;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  text-align: center;
+}
+
+.header h1 {
+  margin: 0;
+  color: rgb(33, 50, 136);
+}
+
+.header p {
+  color: black;
+  margin: 5px 0 20px;
+}
+
+.sub-info {
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 10px;
+}
+
+.sub-info p {
+  margin: 0; 
+}
+
+.separator {
+  margin: 0 0.5rem;
+  color: #666; /* Color del separador */
+}
+
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.section h2 {
+  background-color: rgb(33, 50, 136);
+  color: white;
+  padding: 5px;
+  margin: 0 -20px 10px;
+  font-size: 1.5rem; /* Aumentar el tamaño del título */
+  text-align: left; /* Alinear el título a la izquierda */
+  border-bottom: 1px solid rgb(33, 50, 136);
+}
+
+/* Estilos para cada elemento de experiencia */
+.section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.section ul li {
+  margin-bottom: 20px;
+  padding-left: 10px;
+}
+
+/* Estilos para el contenido de cada elemento de experiencia */
+.section ul li p {
+  margin: 5px 0;
+  font-size: 1rem; /* Tamaño de fuente */
+  line-height: 1.4; /* Espaciado de línea */
+  text-align: left; /* Alineación a la izquierda */
+}
+
+/* Estilos para las fechas */
+.section ul li p:nth-child(1) {
+  color: rgb(33, 50, 136);
+  font-weight: bold; /* Negrita para las fechas */
+}
+
+h3 {
+  text-align: left; /* Alineación a la izquierda */
+  border-bottom: 1px solid rgb(33, 50, 136);
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+}
+
+
+/* Agregar estilos para la sección de experiencia */
+.experience-item {
+  margin-bottom: 20px;
+}
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  padding-right: 0.5rem;
+}
+
+.experience-header p {
+  margin: 0;
+}
+
+.company, .role {
+  font-size: 1rem !important;
+}
+
+.role {
+  margin-bottom: 0.5rem !important;
+}
+
+.description-bullet {
+  position: relative;
+  padding-left: 20px; 
+}
+
+.description-bullet::before {
+  content: '•';
+  color: rgb(33, 50, 136);
+  position: absolute;
+  left: 0;
+  font-size: 2rem;
+  top: 0;
+  line-height: 0.75; 
+}
+
+
+
+@media (max-width: 768px) {
   .App {
     height: 100%;
   }
-
-  .App-header {
-    margin-bottom: 5%;
-  }
-
+  
   .app-container {
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 0.25rem;
     margin-bottom: 2rem;
-    
   }
 
   .form-panel, .preview-panel {
@@ -221,9 +544,12 @@ button:hover {
     margin-bottom: 2rem;
   }
 }
+
 ----------------------------------------
 
 src/components/ResumeForm.jsx:
+
+// components/ResumeForm.js
 
 import React, { useState } from "react";
 
@@ -252,10 +578,16 @@ const ResumeForm = ({ onDataChange }) => {
   };
 
   const handleExperienceUpdate = (newExperience) => {
-    setResumeData({ ...resumeData, experience: newExperience });
-    onDataChange({ ...resumeData, experience: newExperience });
+    setResumeData((prevData) => ({
+      ...prevData,
+      experience: newExperience,
+    }));
+    onDataChange((prevData) => ({
+      ...prevData,
+      experience: newExperience,
+    }));
   };
-
+  
   const handleEducationUpdate = (newEducation) => {
     setResumeData({ ...resumeData, education: newEducation });
     onDataChange({ ...resumeData, education: newEducation });
@@ -298,91 +630,271 @@ export default ResumeForm;
 
 ----------------------------------------
 
-src/components/PersonalInfoForm.jsx:
+src/components/ResumePreview.jsx:
 
-import React, { useState } from "react";
-import { useForm }  from "react-hook-form";
+// components/ResumePreview.jsx
+
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faPhone, faMapMarker } from "@fortawesome/free-solid-svg-icons";
 
-const PersonalInfoForm = ({ onUpdate }) => {
-  const [personalInfo, setPersonalInfo] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phoneNumber: "",
-  });
 
+const ResumePreview = ({ data }) => {
+  return (
+    <div className="resume-container">
+      <div className="header">
+        <h1>{data.personalInfo?.fullName}</h1>
+        <div className="sub-info">
+        <FontAwesomeIcon icon={faEnvelope} className="text-gray-600 mr-1" />
+          <p>{data.personalInfo?.email}</p>
+          <span className="separator">|</span>
+          <FontAwesomeIcon icon={faPhone} className="text-gray-600 mx-1" />
+          <p>{data.personalInfo?.phoneNumber}</p>
+          <span className="separator">|</span>
+          {data.personalInfo?.location && (
+            <>
+                  <FontAwesomeIcon icon={faMapMarker} className="text-gray-600 mx-1" />
+            <p>{data.personalInfo.location}</p>
+            </>
+          )}
+     </div>
+     </div>
+     {/* <hr />  */}
+     <br></br>
+     <div className="section">
+  <h3>Experience</h3>
+  <ul>
+    {data.experience.map((exp, index) => (
+      <li key={index}>
+        <div className="experience-item">
+          <div className="experience-header">
+            <p className="company">{exp.company}</p>
+            <p>{exp.startDate} - {exp.endDate}</p>
+          </div>
+          <p className="role">{exp.role}</p>
+          {exp.description && (
+            <p className="description-bullet">{exp.description}</p>
+          )}
+        </div>
+      </li>
+    ))}
+  </ul>
+</div>
+
+
+      <div className="section">
+        <h3>Education</h3>
+      </div>
+
+      <div className="section">
+        <h3>Skills</h3>
+      </div>
+
+      <div className="section">
+        <h3>Projects</h3>
+      </div>
+
+      <div className="section">
+        <h3>Certificates</h3>
+      </div>
+
+      <div className="section">
+        <h3>Languages</h3>
+      </div>
+    </div>
+  );
+};
+
+export default ResumePreview;
+
+----------------------------------------
+
+src/components/ExperienceForm.jsx:
+
+// contents/ExperienceForm.jsx
+
+import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronDown,
+  faChevronUp,
+  faPlus,
+  faTrash,
+  faSave,
+} from "@fortawesome/free-solid-svg-icons";
+
+const ExperienceForm = ({ onUpdate }) => {
+  const [experience, setExperience] = useState([
+    {
+      company: "",
+      role: "",
+      startDate: "",
+      endDate: "",
+      description: "",
+    },
+  ]);
   const [isFormVisible, setIsFormVisible] = useState(false);
+  const [hasChanges, setHasChanges] = useState(false);
+
+  useEffect(() => {
+    const savedExperience = localStorage.getItem("experience");
+    if (savedExperience) {
+      setExperience(JSON.parse(savedExperience));
+    }
+  }, []);
 
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event, index) => {
     const { name, value } = event.target;
-    setPersonalInfo({ ...personalInfo, [name]: value });
+    const updatedExperiences = [...experience];
+    updatedExperiences[index] = { ...updatedExperiences[index], [name]: value };
+    setExperience(updatedExperiences);
+    onUpdate(updatedExperiences);
+    setHasChanges(true);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    onUpdate(personalInfo);
+  const handleAddExperience = () => {
+    setExperience([
+      ...experience,
+      {
+        company: "",
+        role: "",
+        startDate: "",
+        endDate: "",
+        description: "",
+      },
+    ]);
+  };
+
+  const handleDelete = (index) => {
+    if (experience.length > 1) {
+      const updatedExperiences = [...experience];
+      updatedExperiences.splice(index, 1);
+      setExperience(updatedExperiences);
+      onUpdate(updatedExperiences);
+      localStorage.setItem("experience", JSON.stringify(updatedExperiences));
+    } else {
+      // Si solo hay una experiencia, oculta los campos de entrada
+      setExperience([
+        {
+          company: "",
+          role: "",
+          startDate: "",
+          endDate: "",
+          description: "",
+        },
+      ]);
+      // Y oculta el formulario
+      setIsFormVisible(false);
+    }
+  };
+
+  const handleSave = () => {
+    localStorage.setItem("experience", JSON.stringify(experience));
+    setHasChanges(false);
   };
 
   return (
     <div>
-      <div className="title-button" onClick={toggleFormVisibility}>
-        <h2>Personal Information</h2>
+      <div
+        className={`title-button ${isFormVisible ? "expanded" : ""}`}
+        onClick={toggleFormVisibility}
+      >
+        <h2>Experience</h2>
         <FontAwesomeIcon icon={isFormVisible ? faChevronUp : faChevronDown} />
       </div>
       {isFormVisible && (
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>Name:</label>
-            <input
-              type="text"
-              name="firstName"
-              value={personalInfo.firstName}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Surname:</label>
-            <input
-              type="text"
-              name="lastName"
-              value={personalInfo.lastName}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Email:</label>
-            <input
-              type="email"
-              name="email"
-              value={personalInfo.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Phone:</label>
-            <input
-              type="tel"
-              name="phoneNumber"
-              value={personalInfo.phoneNumber}
-              onChange={handleChange}
-            />
-          </div>
-          {/* Agrega más campos según sea necesario */}
-
-          <button type="submit">Submit</button>
-        </form>
+        <div className="form-container">
+          <form>
+            {experience.map((exp, index) => (
+              <div key={index}>
+                <div className="form-field">
+                  <label>Company Name:</label>
+                  <input
+                    type="text"
+                    name="company"
+                    value={exp.company}
+                    onChange={(e) => handleChange(e, index)}
+                  />
+                </div>
+                <div className="form-field">
+                  <label>Role:</label>
+                  <input
+                    type="text"
+                    name="role"
+                    value={exp.role}
+                    onChange={(e) => handleChange(e, index)}
+                  />
+                </div>
+                <div className="form-field">
+                  <label>Start Date:</label>
+                  <input
+                    type="date"
+                    name="startDate"
+                    value={exp.startDate}
+                    onChange={(e) => handleChange(e, index)}
+                  />
+                </div>
+                <div className="form-field">
+                  <label>End Date:</label>
+                  <input
+                    type="date"
+                    name="endDate"
+                    value={exp.endDate}
+                    onChange={(e) => handleChange(e, index)}
+                  />
+                </div>
+                <div className="form-field">
+                  <label>Description:</label>
+                  <div className="textarea-container">
+                    <textarea
+                      name="description"
+                      value={exp.description}
+                      onChange={(e) => handleChange(e, index)}
+                    />
+                  </div>
+                </div>
+                <div className="button-container">
+                  {index === experience.length - 1 && (
+                    <button type="button" onClick={handleAddExperience}>
+                      <FontAwesomeIcon icon={faPlus} /> New
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(index)}
+                    className="delete-button"
+                  >
+                    <FontAwesomeIcon icon={faTrash} /> Delete
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleSave}
+                    disabled={!hasChanges}
+                    className={hasChanges ? "" : "saved-button"}
+                  >
+                    {hasChanges ? (
+                      <>
+                        <FontAwesomeIcon icon={faSave} /> Save
+                      </>
+                    ) : (
+                      "Saved"
+                    )}
+                  </button>
+                </div>
+              </div>
+            ))}
+          </form>
+        </div>
       )}
     </div>
   );
 };
 
-export default PersonalInfoForm;
+export default ExperienceForm;
 
 ----------------------------------------
 
