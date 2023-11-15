@@ -375,6 +375,14 @@ h3 {
   margin: 0;
 }
 
+.company, .role {
+  font-size: 1rem !important;
+}
+
+.role {
+  margin-bottom: 0.5rem !important;
+}
+
 .description-bullet {
   position: relative;
   padding-left: 20px; 

@@ -34,10 +34,10 @@ const ResumePreview = ({ data }) => {
       <li key={index}>
         <div className="experience-item">
           <div className="experience-header">
-            <p>{exp.company}</p>
+            <p className="company">{exp.company}</p>
             <p>{exp.startDate} - {exp.endDate}</p>
           </div>
-          <p>{exp.role}</p>
+          <p className="role">{exp.role}</p>
           <p className="description-bullet">{exp.description}</p>
         </div>
       </li>
