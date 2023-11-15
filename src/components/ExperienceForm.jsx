@@ -9,8 +9,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const ExperienceForm = ({ onUpdate }) => {
-  const [experience, setExperience] = useState([]);
-  const [isFormVisible, setIsFormVisible] = useState(false);
+  const [experience, setExperience] = useState([
+    {
+      company: "",
+      role: "",
+      startDate: "",
+      endDate: "",
+      descriptions: [""], // Inicialmente, se agrega una descripción vacía
+    },
+  ]);  const [isFormVisible, setIsFormVisible] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
   const [deletedExperienceIndex, setDeletedExperienceIndex] = useState(null);
 
