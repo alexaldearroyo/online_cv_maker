@@ -368,14 +368,27 @@ h3 {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 5px;
+  padding-right: 0.5rem;
 }
 
 .experience-header p {
   margin: 0;
 }
 
-/* Estilos adicionales según tus preferencias */
+.description-bullet {
+  position: relative;
+  padding-left: 20px; 
+}
 
+.description-bullet::before {
+  content: '•';
+  color: rgb(33, 50, 136);
+  position: absolute;
+  left: 0;
+  font-size: 2rem;
+  top: 0;
+  line-height: 0.75; 
+}
 
 
 
