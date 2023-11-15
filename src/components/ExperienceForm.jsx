@@ -12,14 +12,15 @@ const ExperienceForm = ({ onUpdate }) => {
   const [experience, setExperience] = useState([]);
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
+  const [deletedExperienceIndex, setDeletedExperienceIndex] = useState(null);
+
 
   useEffect(() => {
-    // Cargar los datos guardados desde localStorage cuando se monta el componente
     const savedExperience = localStorage.getItem("experience");
     if (savedExperience) {
       setExperience(JSON.parse(savedExperience));
     }
-  }, []); // El segundo argumento [] indica que este efecto se ejecuta solo una vez al montar el componente.
+  }, []);
 
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);

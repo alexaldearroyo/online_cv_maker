@@ -1,4 +1,4 @@
-// components/PersonalInfoForm.jsx
+// components/personalInfoForm.jsx
 
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,14 +10,14 @@ import {
 
 const PersonalInfoForm = ({ onUpdate }) => {
   const [personalInfo, setPersonalInfo] = useState({
-    firstName: "",
-    lastName: "",
+    fullName: "", 
     email: "",
     phoneNumber: "",
+    location: "", 
   });
 
   const [isFormVisible, setIsFormVisible] = useState(false);
-  const [hasChanges, setHasChanges] = useState(false); // Estado para rastrear los cambios
+  const [hasChanges, setHasChanges] = useState(false);
 
   useEffect(() => {
     const savedData = localStorage.getItem("personalInfo");
@@ -34,7 +34,7 @@ const PersonalInfoForm = ({ onUpdate }) => {
     const { name, value } = event.target;
     setPersonalInfo({ ...personalInfo, [name]: value });
     onUpdate({ ...personalInfo, [name]: value });
-    setHasChanges(true); // Marcar que se realizaron cambios
+    setHasChanges(true);
   };
 
   const handleSave = () => {
@@ -55,20 +55,11 @@ const PersonalInfoForm = ({ onUpdate }) => {
         <div className="form-container">
           <form>
             <div className="form-field">
-              <label>Name:</label>
+              <label>Full Name:</label>
               <input
                 type="text"
-                name="firstName"
-                value={personalInfo.firstName}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-field">
-              <label>Surname:</label>
-              <input
-                type="text"
-                name="lastName"
-                value={personalInfo.lastName}
+                name="fullName"
+                value={personalInfo.fullName}
                 onChange={handleChange}
               />
             </div>
@@ -87,6 +78,15 @@ const PersonalInfoForm = ({ onUpdate }) => {
                 type="tel"
                 name="phoneNumber"
                 value={personalInfo.phoneNumber}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-field">
+              <label>Location:</label>
+              <input
+                type="text"
+                name="location"
+                value={personalInfo.location}
                 onChange={handleChange}
               />
             </div>

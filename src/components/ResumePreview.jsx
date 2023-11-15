@@ -1,86 +1,53 @@
 // components/ResumePreview.jsx
 
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faPhone, faMapMarker } from "@fortawesome/free-solid-svg-icons";
+
 
 const ResumePreview = ({ data }) => {
   return (
-    <div>
-      <h2>Resume Preview</h2>
-
-      <div>
-        <h3>Personal Information</h3>
-        <p>
-          Name: {data.personalInfo?.firstName} {data.personalInfo?.lastName}
-        </p>
-        <p>Email: {data.personalInfo?.email}</p>
-        <p>Phone: {data.personalInfo?.phoneNumber}</p>
+    <div className="resume-container">
+      <div className="header">
+        <h1>{data.personalInfo?.fullName}</h1>
+        <div className="sub-info">
+        <FontAwesomeIcon icon={faEnvelope} className="text-gray-600 mr-1" />
+          <p>{data.personalInfo?.email}</p>
+          <span className="separator">|</span>
+          <FontAwesomeIcon icon={faPhone} className="text-gray-600 mx-1" />
+          <p>{data.personalInfo?.phoneNumber}</p>
+          <span className="separator">|</span>
+          {data.personalInfo?.location && (
+            <>
+                  <FontAwesomeIcon icon={faMapMarker} className="text-gray-600 mx-1" />
+            <p>{data.personalInfo.location}</p>
+            </>
+          )}
+     </div>
+     </div>
+     <hr /> 
+      <div className="section">
+        <h3>Experience</h3>
       </div>
 
-      <div>
-        <h3>Work Experience</h3>
-        {data.experience?.map((exp, index) => (
-          <div key={index}>
-            <p>
-              {exp.position} at {exp.company}
-            </p>
-            <p>
-              From: {exp.startDate} To: {exp.endDate}
-            </p>
-            <p>Description: {exp.description}</p>
-          </div>
-        ))}
-      </div>
-
-      <div>
+      <div className="section">
         <h3>Education</h3>
-        {data.education?.map((edu, index) => (
-          <div key={index}>
-            <p>Degree: {edu.degree}</p>
-            <p>School: {edu.schoolName}</p>
-            <p>Major: {edu.major}</p>
-            <p>Year of completion: {edu.graduationYear}</p>
-          </div>
-        ))}
       </div>
 
-      <div>
+      <div className="section">
         <h3>Skills</h3>
-        {data.skills?.map((skill, index) => (
-          <div key={index}>
-            <p>{skill}</p>
-          </div>
-        ))}
       </div>
 
-      <div>
+      <div className="section">
         <h3>Projects</h3>
-        {data.projects?.map((project, index) => (
-          <div key={index}>
-            <p>{project.name}</p>
-            <p>Description: {project.description}</p>
-          </div>
-        ))}
       </div>
 
-      <div>
+      <div className="section">
         <h3>Certificates</h3>
-        {data.certificates?.map((certificate, index) => (
-          <div key={index}>
-            <p>{certificate.name}</p>
-            <p>From: {certificate.institution}</p>
-            <p>Year: {certificate.year}</p>
-          </div>
-        ))}
       </div>
 
-      <div>
+      <div className="section">
         <h3>Languages</h3>
-        {data.languages?.map((language, index) => (
-          <div key={index}>
-            <p>{language.name}</p>
-            <p>Level: {language.level}</p>
-          </div>
-        ))}
       </div>
     </div>
   );

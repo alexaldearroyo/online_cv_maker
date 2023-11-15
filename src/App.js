@@ -6,6 +6,16 @@ import ResumeForm from "./components/ResumeForm";
 import ResumePreview from "./components/ResumePreview";
 
 function App() {
+  const [isScrolling, setIsScrolling] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setIsScrolling(true);
+    } else {
+      setIsScrolling(false);
+    }
+  };
+
   const [resumeData, setResumeData] = useState({
     experience: [],
     education: [],
@@ -19,75 +29,79 @@ function App() {
     setResumeData(newData);
   };
 
-useEffect(() => {
-  const storedData = localStorage.getItem("resumeData");
-  if (storedData) {
-    setResumeData(JSON.parse(storedData));
-  }
-}, []);
+  useEffect(() => {
+    const storedData = localStorage.getItem("resumeData");
+    if (storedData) {
+      setResumeData(JSON.parse(storedData));
+    }
+  }, []);
 
-useEffect(() => {
-  const savedPersonalInfo = localStorage.getItem("personalInfo");
-  if (savedPersonalInfo) {
-    setResumeData((prevData) => ({
-      ...prevData,
-      personalInfo: JSON.parse(savedPersonalInfo),
-    }));
-  }
-}, []);
+  useEffect(() => {
+    const savedPersonalInfo = localStorage.getItem("personalInfo");
+    if (savedPersonalInfo) {
+      setResumeData((prevData) => ({
+        ...prevData,
+        personalInfo: JSON.parse(savedPersonalInfo),
+      }));
+    }
+  }, []);
 
-useEffect(() => {
-  const savedExperience = localStorage.getItem("experience");
-  if (savedExperience) {
-    setResumeData((prevData) => ({
-      ...prevData,
-      experience: JSON.parse(savedExperience),
-    }));
-  }
-}, []);
+  useEffect(() => {
+    const savedExperience = localStorage.getItem("experience");
+    if (savedExperience) {
+      setResumeData((prevData) => ({
+        ...prevData,
+        experience: JSON.parse(savedExperience),
+      }));
+    }
+  }, []);
 
-useEffect(() => {
-  const savedEducation = localStorage.getItem("education");
-  if (savedEducation) {
-    setResumeData((prevData) => ({
-      ...prevData,
-      education: JSON.parse(savedEducation),
-    }));
-  }
-}, []);
+  useEffect(() => {
+    const savedEducation = localStorage.getItem("education");
+    if (savedEducation) {
+      setResumeData((prevData) => ({
+        ...prevData,
+        education: JSON.parse(savedEducation),
+      }));
+    }
+  }, []);
 
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <div className="App">
+      {/* Barra fija visible solo al hacer scroll */}
+      {isScrolling && <div className="fixed-bar"></div>}
+
       <header className="App-header">
         <h1>Online CV Maker</h1>
       </header>
-
+      
       <div className="app-container">
         <div className="form-panel">
+          <div className="title-bar">
+            <p>Edit</p>
+          </div>
 
-        <div className="title-bar">
-          <p>Edit</p>
-        </div>
-
-        <div className="content">
-
-          <ResumeForm onDataChange={handleDataChange} />
-        </div>
+          <div className="content">
+            <ResumeForm onDataChange={handleDataChange} />
+          </div>
         </div>
 
         <div className="preview-panel">
+          <div className="title-bar">
+            <p>View</p>
+          </div>
 
-        <div className="title-bar">
-          <p>Preview</p>
+          <div className="content">
+            <ResumePreview data={resumeData} />
+          </div>
         </div>
-
-        <div className="content">
-
-          <ResumePreview data={resumeData} />
-        </div>
-        </div>
-
       </div>
     </div>
   );
