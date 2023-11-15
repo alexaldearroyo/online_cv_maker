@@ -44,8 +44,12 @@ h2 {
   background-color: #D9D9D9;
   position: fixed;
   z-index: 999;
-  /* opacity: 0; */
-  /* transition: opacity 0.3s;  */
+  opacity: 0;
+  transition: opacity 0.75s ease;
+}
+
+.fixed-bar.visible {
+  opacity: 1;
 }
 
 
@@ -109,7 +113,6 @@ h2 {
   justify-content: center;
   flex-grow: 1;
   width: 90%;
-  margin-top: 50px;
 }
 
 .Labels {

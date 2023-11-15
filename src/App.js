@@ -74,14 +74,14 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      {/* Barra fija visible solo al hacer scroll */}
-      {isScrolling && <div className="fixed-bar"></div>}
+    <div className={`App ${isScrolling ? "scrolling" : ""}`}>
+      {/* Barra fija con clase "visible" cuando se está haciendo scroll */}
+      <div className={`fixed-bar ${isScrolling ? "visible" : ""}`}></div>
 
       <header className="App-header">
         <h1>Online CV Maker</h1>
       </header>
-      
+
       <div className="app-container">
         <div className="form-panel">
           <div className="title-bar">
