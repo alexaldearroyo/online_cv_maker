@@ -38,7 +38,9 @@ const ResumePreview = ({ data }) => {
             <p>{exp.startDate} - {exp.endDate}</p>
           </div>
           <p className="role">{exp.role}</p>
-          <p className="description-bullet">{exp.description}</p>
+          {exp.description && (
+            <p className="description-bullet">{exp.description}</p>
+          )}
         </div>
       </li>
     ))}
