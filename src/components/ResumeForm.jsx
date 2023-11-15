@@ -27,10 +27,16 @@ const ResumeForm = ({ onDataChange }) => {
   };
 
   const handleExperienceUpdate = (newExperience) => {
-    setResumeData({ ...resumeData, experience: newExperience });
-    onDataChange({ ...resumeData, experience: newExperience });
+    setResumeData((prevData) => ({
+      ...prevData,
+      experience: newExperience,
+    }));
+    onDataChange((prevData) => ({
+      ...prevData,
+      experience: newExperience,
+    }));
   };
-
+  
   const handleEducationUpdate = (newEducation) => {
     setResumeData({ ...resumeData, education: newEducation });
     onDataChange({ ...resumeData, education: newEducation });

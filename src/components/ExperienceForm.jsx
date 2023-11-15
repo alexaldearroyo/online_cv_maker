@@ -54,8 +54,12 @@ const ExperienceForm = ({ onUpdate }) => {
       updatedExperiences.splice(index, 1);
       setExperience(updatedExperiences);
       onUpdate(updatedExperiences);
+      
+      // Guardar la experiencia actualizada en el localStorage
+      localStorage.setItem("experience", JSON.stringify(updatedExperiences));
     }
   };
+  
 
   const handleSave = () => {
     localStorage.setItem("experience", JSON.stringify(experience));

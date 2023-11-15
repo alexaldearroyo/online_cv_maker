@@ -17,6 +17,12 @@ function App() {
   };
 
   const [resumeData, setResumeData] = useState({
+    personalInfo: {
+      fullName: "",
+      email: "",
+      phoneNumber: "",
+      location: "",
+    },
     experience: [],
     education: [],
     skills: [],

@@ -32,9 +32,11 @@ const PersonalInfoForm = ({ onUpdate }) => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setPersonalInfo({ ...personalInfo, [name]: value });
-    onUpdate({ ...personalInfo, [name]: value });
-    setHasChanges(true);
+    const updatedPersonalInfo = { ...personalInfo, [name]: value }; // Usar el estado actualizado
+    setPersonalInfo(updatedPersonalInfo); // Actualizar el estado
+    onUpdate(updatedPersonalInfo); // Llamar a la función onUpdate con el estado actualizado
+    localStorage.setItem("personalInfo", JSON.stringify(updatedPersonalInfo)); // Almacenar el estado actualizado en localStorage
+    setHasChanges(true); // Asegurarse de que hasChanges se establezca en true cuando haya cambios
   };
 
   const handleSave = () => {
