@@ -25,20 +25,26 @@ const ResumePreview = ({ data }) => {
           )}
      </div>
      </div>
-     <hr /> 
-      <div className="section">
-        <h3>Experience</h3>
-        <ul>
-          {data.experience.map((exp, index) => (
-            <li key={index}>
-              <p>{exp.company}</p>
-              <p>{exp.role}</p>
-              <p>{exp.startDate} - {exp.endDate}</p>
-              <p>{exp.description}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
+     {/* <hr />  */}
+     <br></br>
+     <div className="section">
+  <h3>Experience</h3>
+  <ul>
+    {data.experience.map((exp, index) => (
+      <li key={index}>
+        <div className="experience-item">
+          <div className="experience-header">
+            <p>{exp.company}</p>
+            <p>{exp.startDate} - {exp.endDate}</p>
+          </div>
+          <p>{exp.role}</p>
+          <p>{exp.description}</p>
+        </div>
+      </li>
+    ))}
+  </ul>
+</div>
+
 
       <div className="section">
         <h3>Education</h3>

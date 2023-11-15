@@ -312,23 +312,71 @@ button:hover {
 
 
 .section {
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
 }
 
 .section h2 {
-  background-color: #4CAF50;
+  background-color: rgb(33, 50, 136);
   color: white;
   padding: 5px;
   margin: 0 -20px 10px;
+  font-size: 1.5rem; /* Aumentar el tamaño del título */
+  text-align: left; /* Alinear el título a la izquierda */
+  border-bottom: 1px solid rgb(33, 50, 136);
 }
 
-.section-content h3 {
-  margin-top: 0;
+/* Estilos para cada elemento de experiencia */
+.section ul {
+  list-style-type: none;
+  padding: 0;
 }
 
-.section-content p {
+.section ul li {
+  margin-bottom: 20px;
+  padding-left: 10px;
+}
+
+/* Estilos para el contenido de cada elemento de experiencia */
+.section ul li p {
   margin: 5px 0;
+  font-size: 1rem; /* Tamaño de fuente */
+  line-height: 1.4; /* Espaciado de línea */
+  text-align: left; /* Alineación a la izquierda */
 }
+
+/* Estilos para las fechas */
+.section ul li p:nth-child(1) {
+  color: rgb(33, 50, 136);
+  font-weight: bold; /* Negrita para las fechas */
+}
+
+h3 {
+  text-align: left; /* Alineación a la izquierda */
+  border-bottom: 1px solid rgb(33, 50, 136);
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+}
+
+
+/* Agregar estilos para la sección de experiencia */
+.experience-item {
+  margin-bottom: 20px;
+}
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.experience-header p {
+  margin: 0;
+}
+
+/* Estilos adicionales según tus preferencias */
+
+
 
 
 @media (max-width: 768px) {
