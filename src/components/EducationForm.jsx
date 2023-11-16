@@ -19,7 +19,6 @@ const EducationForm = ({ onUpdate }) => {
   ]);
 
   useEffect(() => {
-    // Cargar los datos guardados desde localStorage cuando se monta el componente
     const savedEducation = localStorage.getItem("education");
     if (savedEducation) {
       setEducationList(JSON.parse(savedEducation));
@@ -39,13 +38,24 @@ const EducationForm = ({ onUpdate }) => {
   };
 
   const handleDelete = (index) => {
+    const updatedEducationList = [...educationList];
+    
     if (educationList.length > 1) {
-      const updatedEducationList = [...educationList];
       updatedEducationList.splice(index, 1);
-      setEducationList(updatedEducationList);
-      onUpdate(updatedEducationList);
+    } else {
+      updatedEducationList[index] = {
+        schoolName: "",
+        degree: "",
+        major: "",
+        graduationYear: "",
+      };
     }
+  
+    setEducationList(updatedEducationList);
+    onUpdate(updatedEducationList);
+    localStorage.setItem("education", JSON.stringify(updatedEducationList));
   };
+  
 
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
@@ -87,7 +97,7 @@ const EducationForm = ({ onUpdate }) => {
                   <input
                     type="text"
                     name="schoolName"
-                    value={education.schoolName} // Establece el valor del campo
+                    value={education.schoolName}
                     onChange={(e) => handleChange(e, index)}
                   />
                 </div>
@@ -96,7 +106,7 @@ const EducationForm = ({ onUpdate }) => {
                   <input
                     type="text"
                     name="degree"
-                    value={education.degree} // Establece el valor del campo
+                    value={education.degree}
                     onChange={(e) => handleChange(e, index)}
                   />
                 </div>
@@ -105,7 +115,7 @@ const EducationForm = ({ onUpdate }) => {
                   <input
                     type="text"
                     name="major"
-                    value={education.major} // Establece el valor del campo
+                    value={education.major}
                     onChange={(e) => handleChange(e, index)}
                   />
                 </div>
@@ -114,7 +124,7 @@ const EducationForm = ({ onUpdate }) => {
                   <input
                     type="text"
                     name="graduationYear"
-                    value={education.graduationYear} // Establece el valor del campo
+                    value={education.graduationYear}
                     onChange={(e) => handleChange(e, index)}
                   />
                 </div>
@@ -124,7 +134,7 @@ const EducationForm = ({ onUpdate }) => {
                       <FontAwesomeIcon icon={faPlus} /> New
                     </button>
                   )}
-                  {educationList.length > 1 && (
+
                     <button
                       type="button"
                       onClick={() => handleDelete(index)}
@@ -132,7 +142,7 @@ const EducationForm = ({ onUpdate }) => {
                     >
                       <FontAwesomeIcon icon={faTrash} /> Delete
                     </button>
-                  )}
+                    
                   <button
                     type="button"
                     onClick={handleSave}

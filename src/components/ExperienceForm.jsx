@@ -15,12 +15,11 @@ const ExperienceForm = ({ onUpdate }) => {
       role: "",
       startDate: "",
       endDate: "",
-      descriptions: [""], // Inicialmente, se agrega una descripción vacía
+      descriptions: [""],
     },
   ]);
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
-  const [deletedExperienceIndex, setDeletedExperienceIndex] = useState(null);
 
   useEffect(() => {
     const savedExperience = localStorage.getItem("experience");
@@ -56,15 +55,23 @@ const ExperienceForm = ({ onUpdate }) => {
   };
 
   const handleDelete = (index) => {
+    const updatedExperiences = [...experience];
+    
     if (experience.length > 1) {
-      const updatedExperiences = [...experience];
       updatedExperiences.splice(index, 1);
-      setExperience(updatedExperiences);
-      onUpdate(updatedExperiences);
-
-      // Guardar la experiencia actualizada en el localStorage
-      localStorage.setItem("experience", JSON.stringify(updatedExperiences));
+    } else {
+      updatedExperiences[index] = {
+        company: "",
+        role: "",
+        startDate: "",
+        endDate: "",
+        description: "",
+      };
     }
+  
+    setExperience(updatedExperiences);
+    onUpdate(updatedExperiences);
+    localStorage.setItem("experience", JSON.stringify(updatedExperiences));
   };
 
   const handleSave = () => {
@@ -140,7 +147,6 @@ const ExperienceForm = ({ onUpdate }) => {
                     </button>
                   )}
 
-                  {experience.length > 1 && (
                     <button
                       type="button"
                       onClick={() => handleDelete(index)}
@@ -148,7 +154,6 @@ const ExperienceForm = ({ onUpdate }) => {
                     >
                       <FontAwesomeIcon icon={faTrash} /> Delete
                     </button>
-                  )}
 
                   <button
                     type="button"
