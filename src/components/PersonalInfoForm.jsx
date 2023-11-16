@@ -5,15 +5,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronDown,
   faChevronUp,
+  faTrash,
   faSave,
 } from "@fortawesome/free-solid-svg-icons";
 
 const PersonalInfoForm = ({ onUpdate }) => {
   const [personalInfo, setPersonalInfo] = useState({
-    fullName: "", 
+    fullName: "",
     email: "",
     phoneNumber: "",
-    location: "", 
+    location: "",
   });
 
   const [isFormVisible, setIsFormVisible] = useState(false);
@@ -32,11 +33,23 @@ const PersonalInfoForm = ({ onUpdate }) => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    const updatedPersonalInfo = { ...personalInfo, [name]: value }; // Usar el estado actualizado
-    setPersonalInfo(updatedPersonalInfo); // Actualizar el estado
-    onUpdate(updatedPersonalInfo); // Llamar a la función onUpdate con el estado actualizado
-    localStorage.setItem("personalInfo", JSON.stringify(updatedPersonalInfo)); // Almacenar el estado actualizado en localStorage
-    setHasChanges(true); // Asegurarse de que hasChanges se establezca en true cuando haya cambios
+    const updatedPersonalInfo = { ...personalInfo, [name]: value };
+    setPersonalInfo(updatedPersonalInfo);
+    onUpdate(updatedPersonalInfo);
+    localStorage.setItem("personalInfo", JSON.stringify(updatedPersonalInfo));
+    setHasChanges(true);
+  };
+
+  const handleDelete = () => {
+    const emptyPersonalInfo = {
+      fullName: "",
+      email: "",
+      phoneNumber: "",
+      location: "",
+    };
+    setPersonalInfo(emptyPersonalInfo);
+    onUpdate(emptyPersonalInfo);
+    localStorage.setItem("personalInfo", JSON.stringify(emptyPersonalInfo));
   };
 
   const handleSave = () => {
@@ -93,20 +106,30 @@ const PersonalInfoForm = ({ onUpdate }) => {
               />
             </div>
 
-            <button
-              type="button"
-              onClick={handleSave}
-              disabled={!hasChanges}
-              className={hasChanges ? "" : "saved-button"}
-            >
-              {hasChanges ? (
-                <>
-                  <FontAwesomeIcon icon={faSave} /> Save
-                </>
-              ) : (
-                "Saved"
-              )}
-            </button>
+            <div className="button-container">
+              <button
+                type="button"
+                onClick={handleDelete}
+                className="delete-button"
+              >
+                <FontAwesomeIcon icon={faTrash} />{" "}Delete
+              </button>
+
+              <button
+                type="button"
+                onClick={handleSave}
+                disabled={!hasChanges}
+                className={hasChanges ? "" : "saved-button"}
+              >
+                {hasChanges ? (
+                  <>
+                    <FontAwesomeIcon icon={faSave} /> Save
+                  </>
+                ) : (
+                  "Saved"
+                )}
+              </button>
+            </div>
           </form>
         </div>
       )}

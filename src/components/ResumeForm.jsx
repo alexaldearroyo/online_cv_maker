@@ -5,26 +5,30 @@ import React, { useState } from "react";
 import PersonalInfoForm from "./PersonalInfoForm";
 import ExperienceForm from "./ExperienceForm";
 import EducationForm from "./EducationForm";
-import SkillsForm from "./SkillsForm";
-import ProjectsForm from "./ProjectsForm";
-import CertificatesForm from "./CertificatesForm";
-import LanguagesForm from "./LanguagesForm";
+// import SkillsForm from "./SkillsForm";
+// import ProjectsForm from "./ProjectsForm";
+// import CertificatesForm from "./CertificatesForm";
+// import LanguagesForm from "./LanguagesForm";
 
 const ResumeForm = ({ onDataChange }) => {
   const [resumeData, setResumeData] = useState({
     personalInfo: {},
     experience: [],
     education: [],
-    skills: [],
-    projects: [],
-    certificates: [],
-    languages: [],
+    // skills: [],
+    // projects: [],
+    // certificates: [],
+    // languages: [],
   });
 
+
+  // UPDATE INFO:
+
   const handlePersonalInfoUpdate = (newPersonalInfo) => {
-    setResumeData({ ...resumeData, personalInfo: newPersonalInfo });
-    onDataChange({ ...resumeData, personalInfo: newPersonalInfo });
+    setResumeData(prevData => ({ ...prevData, personalInfo: newPersonalInfo }));
+    onDataChange(prevData => ({ ...prevData, personalInfo: newPersonalInfo }));
   };
+  
 
   const handleExperienceUpdate = (newExperience) => {
     setResumeData((prevData) => ({
@@ -36,41 +40,44 @@ const ResumeForm = ({ onDataChange }) => {
       experience: newExperience,
     }));
   };
-  
+
   const handleEducationUpdate = (newEducation) => {
-    setResumeData({ ...resumeData, education: newEducation });
-    onDataChange({ ...resumeData, education: newEducation });
+    setResumeData(prevData => ({ ...prevData, education: newEducation }));
+    onDataChange(prevData => ({ ...prevData, education: newEducation }));
   };
+  
 
-  const handleSkillsUpdate = (newSkills) => {
-    setResumeData({ ...resumeData, skills: newSkills });
-    onDataChange({ ...resumeData, skills: newSkills });
-  };
+  // const handleSkillsUpdate = (newSkills) => {
+  //   setResumeData({ ...prevData, skills: newSkills });
+  //   onDataChange({ ...prevData, skills: newSkills });
+  // };
 
-  const handleProjectsUpdate = (newProjects) => {
-    setResumeData({ ...resumeData, projects: newProjects });
-    onDataChange({ ...resumeData, projects: newProjects });
-  };
+  // const handleProjectsUpdate = (newProjects) => {
+  //   setResumeData({ ...prevData, projects: newProjects });
+  //   onDataChange({ ...prevData, projects: newProjects });
+  // };
 
-  const handleCertificatesUpdate = (newCertificates) => {
-    setResumeData({ ...resumeData, certificates: newCertificates });
-    onDataChange({ ...resumeData, certificates: newCertificates });
-  };
+  // const handleCertificatesUpdate = (newCertificates) => {
+  //   setResumeData({ ...prevData, certificates: newCertificates });
+  //   onDataChange({ ...prevData, certificates: newCertificates });
+  // };
 
-  const handleLanguagesUpdate = (newLanguages) => {
-    setResumeData({ ...resumeData, languages: newLanguages });
-    onDataChange({ ...resumeData, languages: newLanguages });
-  };
+  // const handleLanguagesUpdate = (newLanguages) => {
+  //   setResumeData({ ...prevData, languages: newLanguages });
+  //   onDataChange({ ...prevData, languages: newLanguages });
+  // };
+
+ // RENDER:
 
   return (
     <div className="Labels">
       <PersonalInfoForm onUpdate={handlePersonalInfoUpdate} />
       <ExperienceForm onUpdate={handleExperienceUpdate} />
       <EducationForm onUpdate={handleEducationUpdate} />
-      <SkillsForm onUpdate={handleSkillsUpdate} />
+      {/* <SkillsForm onUpdate={handleSkillsUpdate} />
       <ProjectsForm onUpdate={handleProjectsUpdate} />
       <CertificatesForm onUpdate={handleCertificatesUpdate} />
-      <LanguagesForm onUpdate={handleLanguagesUpdate} />
+      <LanguagesForm onUpdate={handleLanguagesUpdate} /> */}
     </div>
   );
 };

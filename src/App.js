@@ -17,6 +17,7 @@ function App() {
   };
 
   const [resumeData, setResumeData] = useState({
+    // Object withe the data of the resume
     personalInfo: {
       fullName: "",
       email: "",
@@ -25,15 +26,18 @@ function App() {
     },
     experience: [],
     education: [],
-    skills: [],
-    projects: [],
-    certificates: [],
-    languages: [],
+    // skills: [],
+    // projects: [],
+    // certificates: [],
+    // languages: [],
   });
 
   const handleDataChange = (newData) => {
+    // Function to update the resume data
     setResumeData(newData);
   };
+
+  // STORAGE:
 
   useEffect(() => {
     const storedData = localStorage.getItem("resumeData");
@@ -72,6 +76,9 @@ function App() {
     }
   }, []);
 
+
+  // UI:
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -81,7 +88,7 @@ function App() {
 
   return (
     <div className={`App ${isScrolling ? "scrolling" : ""}`}>
-      {/* Barra fija con clase "visible" cuando se está haciendo scroll */}
+
       <div className={`fixed-bar ${isScrolling ? "visible" : ""}`}></div>
 
       <header className="App-header">

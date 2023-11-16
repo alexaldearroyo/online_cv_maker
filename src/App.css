@@ -398,7 +398,10 @@ h3 {
   line-height: 0.75; 
 }
 
-
+.info-text {
+  font-size: 1.25rem;
+  font-family: monospace;
+}
 
 @media (max-width: 768px) {
   .App {
