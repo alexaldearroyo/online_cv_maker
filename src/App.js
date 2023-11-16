@@ -5,6 +5,10 @@ import React, { useState, useEffect } from "react";
 import ResumeForm from "./components/ResumeForm";
 import ResumePreview from "./components/ResumePreview";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+
+
 function App() {
   const [isScrolling, setIsScrolling] = useState(false);
 
@@ -92,6 +96,9 @@ function App() {
       <div className={`fixed-bar ${isScrolling ? "visible" : ""}`}></div>
 
       <header className="App-header">
+      <a href="https://github.com/alexaldearroyo" target="_blank" rel="noopener noreferrer" className="github-icon">
+    <FontAwesomeIcon icon={faGithub} />
+  </a>
         <h1>Online CV Maker</h1>
       </header>
 
