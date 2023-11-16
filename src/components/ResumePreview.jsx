@@ -10,15 +10,22 @@ import {
 
 const ResumePreview = ({ data }) => {
   const hasData = () => {
-    const hasPersonalInfo = data.personalInfo && Object.values(data.personalInfo).some(value => value);
-    const hasExperience = data.experience && data.experience.some(exp => exp.company || exp.role || exp.description);
+    const hasPersonalInfo =
+      data.personalInfo &&
+      Object.values(data.personalInfo).some((value) => value);
+    const hasExperience =
+      data.experience &&
+      data.experience.some((exp) => exp.company || exp.role || exp.description);
     const hasEducation = data.education && data.education.length > 0;
     return hasPersonalInfo || hasExperience || hasEducation;
   };
-  
 
   if (!hasData()) {
-    return <div className="info-text" style={{ fontFamily: 'monospace' }}>No data introduced yet.</div>;
+    return (
+      <div className="info-text" style={{ fontFamily: "monospace" }}>
+        No data introduced yet.
+      </div>
+    );
   }
 
   return (
@@ -57,34 +64,51 @@ const ResumePreview = ({ data }) => {
 
       <br></br>
 
-      {data.experience && data.experience.some(exp => exp.company || exp.role || exp.description) && (
-        <div className="section">
-          <h3>Experience</h3>
-          <ul>
-            {data.experience.map((exp, index) => (
-              <li key={index}>
-                <div className="experience-item">
-                  <div className="experience-header">
-                    <p className="company">{exp.company}</p>
-                    <p>
-                      {exp.startDate} - {exp.endDate}
-                    </p>
+      {data.experience &&
+        data.experience.some(
+          (exp) => exp.company || exp.role || exp.description
+        ) && (
+          <div className="section">
+            <h3>Experience</h3>
+            <ul>
+              {data.experience.map((exp, index) => (
+                <li key={index}>
+                  <div className="list-item">
+                    <div className="list-header">
+                      <p className="company">{exp.company}</p>
+                      <p>
+                        {exp.startDate} - {exp.endDate}
+                      </p>
+                    </div>
+                    <p className="role">{exp.role}</p>
+                    {exp.description && (
+                      <p className="description-bullet">{exp.description}</p>
+                    )}
                   </div>
-                  <p className="role">{exp.role}</p>
-                  {exp.description && (
-                    <p className="description-bullet">{exp.description}</p>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
       {data.education && data.education.length > 0 && (
         <div className="section">
           <h3>Education</h3>
-          {/* Aquí puedes añadir la lógica similar a la de Experience para listar la educación */}
+          <ul>
+            {data.education.map((edu, index) => (
+              <li key={index}>
+                <div className="list-item">
+                  <div className="list-header">
+                    <p className="school-name">{edu.schoolName}</p>
+                      <p>{edu.graduationYear}</p>
+                      </div>
+                    <p className="degree">{edu.degree}</p>
+                  
+                  <p className="description-bullet">{edu.major}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
 
@@ -103,8 +127,6 @@ const ResumePreview = ({ data }) => {
       <div className="section">
         <h3>Languages</h3>
       </div> */}
-
-
     </div>
   );
 };

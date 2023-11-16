@@ -359,11 +359,11 @@ h3 {
 
 
 /* Agregar estilos para la sección de experiencia */
-.experience-item {
+.list-item {
   margin-bottom: 20px;
 }
 
-.experience-header {
+.list-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -371,7 +371,7 @@ h3 {
   padding-right: 0.5rem;
 }
 
-.experience-header p {
+.list-header p {
   margin: 0;
 }
 
