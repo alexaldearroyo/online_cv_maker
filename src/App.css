@@ -383,12 +383,12 @@ h3 {
   margin-bottom: 0.5rem !important;
 }
 
-.description-bullet {
+.list-bullet {
   position: relative;
   padding-left: 20px; 
 }
 
-.description-bullet::before {
+.list-bullet::before {
   content: '•';
   color: rgb(33, 50, 136);
   position: absolute;

@@ -90,14 +90,14 @@ const EducationForm = ({ onUpdate }) => {
       {isFormVisible && (
         <div className="form-container">
           <form>
-            {educationList.map((education, index) => (
+            {educationList.map((edu, index) => (
               <div key={index}>
                 <div className="form-field">
                   <label>School Name:</label>
                   <input
                     type="text"
                     name="schoolName"
-                    value={education.schoolName}
+                    value={edu.schoolName}
                     onChange={(e) => handleChange(e, index)}
                   />
                 </div>
@@ -106,7 +106,7 @@ const EducationForm = ({ onUpdate }) => {
                   <input
                     type="text"
                     name="degree"
-                    value={education.degree}
+                    value={edu.degree}
                     onChange={(e) => handleChange(e, index)}
                   />
                 </div>
@@ -115,7 +115,7 @@ const EducationForm = ({ onUpdate }) => {
                   <input
                     type="text"
                     name="major"
-                    value={education.major}
+                    value={edu.major}
                     onChange={(e) => handleChange(e, index)}
                   />
                 </div>
@@ -124,7 +124,7 @@ const EducationForm = ({ onUpdate }) => {
                   <input
                     type="text"
                     name="graduationYear"
-                    value={education.graduationYear}
+                    value={edu.graduationYear}
                     onChange={(e) => handleChange(e, index)}
                   />
                 </div>
@@ -142,7 +142,7 @@ const EducationForm = ({ onUpdate }) => {
                     >
                       <FontAwesomeIcon icon={faTrash} /> Delete
                     </button>
-                    
+
                   <button
                     type="button"
                     onClick={handleSave}

@@ -16,7 +16,9 @@ const ResumePreview = ({ data }) => {
     const hasExperience =
       data.experience &&
       data.experience.some((exp) => exp.company || exp.role || exp.description);
-    const hasEducation = data.education && data.education.length > 0;
+    const hasEducation =
+    data.education &&
+    data.education.some((edu) => edu.schoolName || edu.degree || edu.major);
     return hasPersonalInfo || hasExperience || hasEducation;
   };
 
@@ -82,7 +84,7 @@ const ResumePreview = ({ data }) => {
                     </div>
                     <p className="role">{exp.role}</p>
                     {exp.description && (
-                      <p className="description-bullet">{exp.description}</p>
+                      <p className="list-bullet">{exp.description}</p>
                     )}
                   </div>
                 </li>
@@ -100,11 +102,12 @@ const ResumePreview = ({ data }) => {
                 <div className="list-item">
                   <div className="list-header">
                     <p className="school-name">{edu.schoolName}</p>
-                      <p>{edu.graduationYear}</p>
-                      </div>
-                    <p className="degree">{edu.degree}</p>
-                  
-                  <p className="description-bullet">{edu.major}</p>
+                    <p>{edu.graduationYear}</p>
+                  </div>
+                  <p className="degree">{edu.degree}</p>
+                  {edu.major && (
+                    <p className="list-bullet">{edu.major}</p>
+                  )}
                 </div>
               </li>
             ))}
