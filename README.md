@@ -2,13 +2,14 @@
 
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 
 
 ## Overview
 
 Online CV Maker is a web application designed to create professional and customizable resumes online. It provides a user-friendly interface where users can input their personal information, educational background, work experience, and other relevant details. The app offers a live preview feature, allowing users to see how their resume looks as they fill out the form.
 
-Check it out here: https://github.com/alexaldearroyo/online_cv_maker
+Check it out here: https://online-cv-maker.vercel.app
 
 
 ![Screenshot](resources/screenshot.png)
