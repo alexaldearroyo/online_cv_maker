@@ -1,0 +1,1751 @@
+// src/App.css:
+
+/* App.css */
+
+.App {
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  flex-grow: 1;
+  background: #D9D9D9;
+  /* align-items: center;
+  justify-content: center; */
+}
+
+
+
+
+.App-header {
+  background-color: white;
+  color: black;
+  border-bottom: black 3px solid;
+  padding: 20px 0;
+  width: 100%;
+  height: 3%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+h2 {
+  color: #333;
+  font-size: 1.25rem;
+  font-weight: normal;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.github-icon {
+  font-size: 1.75rem;
+  color: black;
+  transition: color 0.3s ease;
+  position: absolute;
+  left: 2.25rem;
+}
+
+.github-icon:hover {
+  color: rgb(33, 50, 136);
+}
+
+.fixed-bar {
+  width: 100%;
+  height: 20px;
+  background-color: #D9D9D9;
+  position: fixed;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.75s ease;
+}
+
+.fixed-bar.visible {
+  opacity: 1;
+}
+
+
+.app-container {
+  background: #D9D9D9;
+  display: flex;
+  align-items: stretch;
+  justify-self: center;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  padding: 2rem;
+  gap: 2rem;
+  z-index: 0;
+}
+
+.title-bar {
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  position: sticky;
+  top: 20px;
+  width: 100%;
+  z-index: 10;
+}
+
+.form-panel,
+.preview-panel {
+  flex: 1;
+  min-height: 80%;
+  width: 90%;
+  box-sizing: border-box;
+  background-color: white;
+  padding: 0;
+  display: flex;
+  border: 3px solid black;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: 0 4px 8px 0 rgba(30, 11, 11, 0.2);
+  position: relative;
+  margin-top: 3px;
+  z-index: 0;
+}
+
+
+.title-bar p {
+  margin: 0;
+  padding: 0.5rem;
+  text-align: center;
+  
+}
+
+.content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  width: 90%;
+}
+
+.Labels {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.title-button {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid black;
+  padding: 0.75rem;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  max-height: 20px;
+  margin-top: 0;
+}
+
+.title-button:hover {
+  background-color: #e9e9e9;
+}
+
+.title-button.expanded {
+  border-bottom: 1px solid black;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: 0;
+}
+
+.form-container {
+  border: 1px solid black;
+  border-radius: 4px;
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  margin-top: 0;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #f8f8f8;
+  padding: 0.75rem;
+  display: block;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  flex-grow: 0;
+}
+
+/* .form-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  width: 100%;
+  /* overflow: auto; */
+
+ 
+
+.form-field label {
+  flex-basis: 10%;
+  margin-right: 10px;
+  text-align: right;
+  white-space: nowrap;
+  max-width: 100%;
+  margin: 150px;
+}
+
+textarea,
+.form-field input[type="text"],
+.form-field input[type="email"],
+.form-field input[type="tel"],
+.form-field input[type="date"]
+{
+  width: 90%;
+  max-width: 400px;
+  flex-grow: 0;
+  font-size: 1rem;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+textarea:last-child,
+.form-field input[type="text"]:last-child,
+.form-field input[type="email"]:last-child,
+.form-field input[type="tel"]:last-child,
+.form-field input[type="date"]:last-child {
+  margin-bottom: 1rem;
+}
+
+
+textarea {
+  resize: vertical;
+}
+
+.textarea-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  resize: vertical;
+}
+
+button {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  /* margin-top: 1rem; */
+  /* margin-bottom: 1rem; */
+  min-width: 7rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  
+}
+
+button:hover {
+  background-color: rgb(33, 50, 136);
+}
+
+.saved-button:disabled {
+  background-color: #ccc;
+  box-shadow: inset 0 0 0 1px black;
+  cursor: default;
+  color: black;
+}
+
+.delete-button:hover {
+  background-color: rgb(163, 38, 38) !important;
+}
+
+.resume-container {
+  width: 100%;
+  /* margin: auto; */
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #333;
+  /* border: 1px solid #ddd; */
+  padding: 20px;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  text-align: center;
+}
+
+.header h1 {
+  margin: 0;
+  color: rgb(33, 50, 136);
+}
+
+.header p {
+  color: black;
+  margin: 5px 0 20px;
+}
+
+.sub-info {
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 10px;
+}
+
+.sub-info p {
+  margin: 0; 
+}
+
+.separator {
+  margin: 0 0.5rem;
+  color: #666; /* Color del separador */
+}
+
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.section h2 {
+  background-color: rgb(33, 50, 136);
+  color: white;
+  padding: 5px;
+  margin: 0 -20px 10px;
+  font-size: 1.5rem; /* Aumentar el tamaño del título */
+  text-align: left; /* Alinear el título a la izquierda */
+  border-bottom: 1px solid rgb(33, 50, 136);
+}
+
+/* Estilos para cada elemento de experiencia */
+.section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.section ul li {
+  margin-bottom: 20px;
+  padding-left: 10px;
+}
+
+/* Estilos para el contenido de cada elemento de experiencia */
+.section ul li p {
+  margin: 5px 0;
+  font-size: 1rem; /* Tamaño de fuente */
+  line-height: 1.4; /* Espaciado de línea */
+  text-align: left; /* Alineación a la izquierda */
+}
+
+/* Estilos para las fechas */
+.section ul li p:nth-child(1) {
+  color: rgb(33, 50, 136);
+  font-weight: bold; /* Negrita para las fechas */
+}
+
+h3 {
+  text-align: left; /* Alineación a la izquierda */
+  border-bottom: 1px solid rgb(33, 50, 136);
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+}
+
+
+/* Agregar estilos para la sección de experiencia */
+.list-item {
+  margin-bottom: 20px;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  padding-right: 0.5rem;
+}
+
+.list-header p {
+  margin: 0;
+}
+
+.company, .role {
+  font-size: 1rem !important;
+}
+
+.role {
+  margin-bottom: 0.5rem !important;
+}
+
+.list-bullet {
+  position: relative;
+  padding-left: 20px; 
+}
+
+.list-bullet::before {
+  content: '•';
+  color: rgb(33, 50, 136);
+  position: absolute;
+  left: 0;
+  font-size: 2rem;
+  top: 0;
+  line-height: 0.75; 
+}
+
+.info-text {
+  font-size: 1.25rem;
+  font-family: monospace;
+}
+
+@media (max-width: 768px) {
+  .App {
+    height: 100%;
+  }
+  
+  .app-container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .form-panel, .preview-panel {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    flex-basis: auto;
+    margin-bottom: 2rem;
+  }
+}
+
+----------------------------------------
+
+// src/App.js:
+
+// App.js
+
+import "./App.css";
+import React, { useState, useEffect } from "react";
+import ResumeForm from "./components/ResumeForm";
+import ResumePreview from "./components/ResumePreview";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+
+
+function App() {
+  const [isScrolling, setIsScrolling] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setIsScrolling(true);
+    } else {
+      setIsScrolling(false);
+    }
+  };
+
+  const [resumeData, setResumeData] = useState({
+    // Object withe the data of the resume
+    personalInfo: {
+      fullName: "",
+      email: "",
+      phoneNumber: "",
+      location: "",
+    },
+    experience: [],
+    education: [],
+    // skills: [],
+    // projects: [],
+    // certificates: [],
+    // languages: [],
+  });
+
+  const handleDataChange = (newData) => {
+    // Function to update the resume data
+    setResumeData(newData);
+  };
+
+  // STORAGE:
+
+  useEffect(() => {
+    const storedData = localStorage.getItem("resumeData");
+    if (storedData) {
+      setResumeData(JSON.parse(storedData));
+    }
+  }, []);
+
+  useEffect(() => {
+    const savedPersonalInfo = localStorage.getItem("personalInfo");
+    if (savedPersonalInfo) {
+      setResumeData((prevData) => ({
+        ...prevData,
+        personalInfo: JSON.parse(savedPersonalInfo),
+      }));
+    }
+  }, []);
+
+  useEffect(() => {
+    const savedExperience = localStorage.getItem("experience");
+    if (savedExperience) {
+      setResumeData((prevData) => ({
+        ...prevData,
+        experience: JSON.parse(savedExperience),
+      }));
+    }
+  }, []);
+
+  useEffect(() => {
+    const savedEducation = localStorage.getItem("education");
+    if (savedEducation) {
+      setResumeData((prevData) => ({
+        ...prevData,
+        education: JSON.parse(savedEducation),
+      }));
+    }
+  }, []);
+
+
+  // UI:
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return (
+    <div className={`App ${isScrolling ? "scrolling" : ""}`}>
+
+      <div className={`fixed-bar ${isScrolling ? "visible" : ""}`}></div>
+
+      <header className="App-header">
+      <a href="https://github.com/alexaldearroyo" target="_blank" rel="noopener noreferrer" className="github-icon">
+    <FontAwesomeIcon icon={faGithub} />
+  </a>
+        <h1>Online CV Maker</h1>
+      </header>
+
+      <div className="app-container">
+        <div className="form-panel">
+          <div className="title-bar">
+            <p>Edit</p>
+          </div>
+
+          <div className="content">
+            <ResumeForm onDataChange={handleDataChange} />
+          </div>
+        </div>
+
+        <div className="preview-panel">
+          <div className="title-bar">
+            <p>View</p>
+          </div>
+
+          <div className="content">
+            <ResumePreview data={resumeData} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+----------------------------------------
+
+// src/App.test.js:
+
+import { render, screen } from '@testing-library/react';
+import App from './App';
+
+test('renders learn react link', () => {
+  render(<App />);
+  const linkElement = screen.getByText(/learn react/i);
+  expect(linkElement).toBeInTheDocument();
+});
+
+----------------------------------------
+
+// src/Categories.jsx:
+
+import React, { useState } from "react";
+
+const Categories = ({ onVisibilityChange, visibleForms }) => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+    const handleVisibilityChange = (formName) => {
+      onVisibilityChange(formName, !visibleForms[formName]);
+    };
+  
+
+  return (
+    <div className="CategoriesMenu">
+      <button onClick={() => setIsMenuOpen(!isMenuOpen)}>Categories</button>
+      {isMenuOpen && (
+        <div>
+          {/* Radio-buttons para controlar la visibilidad */}
+          <label>
+            <input
+              type="checkbox"
+              checked={visibleForms.experience}
+              onChange={() => handleVisibilityChange('experience')}
+            />
+            Experience
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={visibleForms.education}
+              onChange={() => handleVisibilityChange('education')}
+            />
+            Education
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={visibleForms.skills}
+              onChange={() => handleVisibilityChange('skills')}
+            />
+            Skills
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={visibleForms.projects}
+              onChange={() => handleVisibilityChange('projects')}
+            />
+            Projects
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={visibleForms.certificates}
+              onChange={() => handleVisibilityChange('certificates')}
+            />
+            Certificates
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={visibleForms.languages}
+              onChange={() => handleVisibilityChange('languages')}
+            />
+            Languages
+          </label>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Categories;
+
+----------------------------------------
+
+// src/components/CertificatesForm.jsx:
+
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+
+const CertificatesForm = ({ onUpdate }) => {
+  const [certificatesInfo, setCertificatesInfo] = useState({
+    certificateName: "",
+    issuingOrganization: "",
+    issueDate: "",
+  });
+
+  const [isFormVisible, setIsFormVisible] = useState(false);
+
+  const toggleFormVisibility = () => {
+    setIsFormVisible(!isFormVisible);
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setCertificatesInfo({ ...certificatesInfo, [name]: value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onUpdate(certificatesInfo);
+  };
+
+  return (
+    <div>
+      <div className="title-button" onClick={toggleFormVisibility}>
+        <h2>Certificates Information</h2>
+        <FontAwesomeIcon icon={isFormVisible ? faChevronUp : faChevronDown} />
+      </div>
+      {isFormVisible && (
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Certificate Name:</label>
+            <input
+              type="text"
+              name="certificateName"
+              value={certificatesInfo.certificateName}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label>Issuing Organization:</label>
+            <input
+              type="text"
+              name="issuingOrganization"
+              value={certificatesInfo.issuingOrganization}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label>Issue Date:</label>
+            <input
+              type="date"
+              name="issueDate"
+              value={certificatesInfo.issueDate}
+              onChange={handleChange}
+            />
+          </div>
+          {/* Agrega más campos de certificados según sea necesario */}
+          <button type="submit">Submit</button>
+        </form>
+      )}
+    </div>
+  );
+};
+
+export default CertificatesForm;
+
+----------------------------------------
+
+// src/components/ExperienceForm.jsx:
+
+import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronDown,
+  faChevronUp,
+  faPlus,
+  faTrash,
+  faSave,
+} from "@fortawesome/free-solid-svg-icons";
+
+const ExperienceForm = ({ onUpdate }) => {
+  const [experience, setExperience] = useState([
+    {
+      company: "",
+      role: "",
+      startDate: "",
+      endDate: "",
+      descriptions: [""],
+    },
+  ]);
+  const [isFormVisible, setIsFormVisible] = useState(false);
+  const [hasChanges, setHasChanges] = useState(false);
+
+  useEffect(() => {
+    const savedExperience = localStorage.getItem("experience");
+    if (savedExperience) {
+      setExperience(JSON.parse(savedExperience));
+    }
+  }, []);
+
+  const toggleFormVisibility = () => {
+    setIsFormVisible(!isFormVisible);
+  };
+
+  const handleChange = (event, index) => {
+    const { name, value } = event.target;
+    const updatedExperiences = [...experience];
+    updatedExperiences[index] = { ...updatedExperiences[index], [name]: value };
+    setExperience(updatedExperiences);
+    onUpdate(updatedExperiences);
+    setHasChanges(true);
+  };
+
+  const handleAddExperience = () => {
+    setExperience([
+      ...experience,
+      {
+        company: "",
+        role: "",
+        startDate: "",
+        endDate: "",
+        description: "",
+      },
+    ]);
+  };
+
+  const handleDelete = (index) => {
+    const updatedExperiences = [...experience];
+    
+    if (experience.length > 1) {
+      updatedExperiences.splice(index, 1);
+    } else {
+      updatedExperiences[index] = {
+        company: "",
+        role: "",
+        startDate: "",
+        endDate: "",
+        description: "",
+      };
+    }
+  
+    setExperience(updatedExperiences);
+    onUpdate(updatedExperiences);
+    localStorage.setItem("experience", JSON.stringify(updatedExperiences));
+  };
+
+  const handleSave = () => {
+    localStorage.setItem("experience", JSON.stringify(experience));
+    setHasChanges(false);
+  };
+
+  return (
+    <div>
+      <div
+        className={`title-button ${isFormVisible ? "expanded" : ""}`}
+        onClick={toggleFormVisibility}
+      >
+        <h2>Experience</h2>
+        <FontAwesomeIcon icon={isFormVisible ? faChevronUp : faChevronDown} />
+      </div>
+      {isFormVisible && (
+        <div className="form-container">
+          <form>
+            {experience.map((exp, index) => (
+              <div key={index}>
+                <div className="form-field">
+                  <label>Company Name:</label>
+                  <input
+                    type="text"
+                    name="company"
+                    value={exp.company}
+                    onChange={(e) => handleChange(e, index)}
+                  />
+                </div>
+                <div className="form-field">
+                  <label>Role:</label>
+                  <input
+                    type="text"
+                    name="role"
+                    value={exp.role}
+                    onChange={(e) => handleChange(e, index)}
+                  />
+                </div>
+                <div className="form-field">
+                  <label>Start Date:</label>
+                  <input
+                    type="date"
+                    name="startDate"
+                    value={exp.startDate}
+                    onChange={(e) => handleChange(e, index)}
+                  />
+                </div>
+                <div className="form-field">
+                  <label>End Date:</label>
+                  <input
+                    type="date"
+                    name="endDate"
+                    value={exp.endDate}
+                    onChange={(e) => handleChange(e, index)}
+                  />
+                </div>
+                <div className="form-field">
+                  <label>Description:</label>
+                  <div className="textarea-container">
+                    <textarea
+                      name="description"
+                      value={exp.description}
+                      onChange={(e) => handleChange(e, index)}
+                    />
+                  </div>
+                </div>
+
+                <div className="button-container">
+                  {index === experience.length - 1 && (
+                    <button type="button" onClick={handleAddExperience}>
+                      <FontAwesomeIcon icon={faPlus} /> New
+                    </button>
+                  )}
+
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(index)}
+                      className="delete-button"
+                    >
+                      <FontAwesomeIcon icon={faTrash} /> Delete
+                    </button>
+
+                  <button
+                    type="button"
+                    onClick={handleSave}
+                    disabled={!hasChanges}
+                    className={hasChanges ? "" : "saved-button"}
+                  >
+                    {hasChanges ? (
+                      <>
+                        <FontAwesomeIcon icon={faSave} /> Save
+                      </>
+                    ) : (
+                      "Saved"
+                    )}
+                  </button>
+                </div>
+              </div>
+            ))}
+          </form>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ExperienceForm;
+
+----------------------------------------
+
+// src/components/ResumeForm.jsx:
+
+// components/ResumeForm.js
+
+import React, { useState } from "react";
+
+import PersonalInfoForm from "./PersonalInfoForm";
+import ExperienceForm from "./ExperienceForm";
+import EducationForm from "./EducationForm";
+// import SkillsForm from "./SkillsForm";
+// import ProjectsForm from "./ProjectsForm";
+// import CertificatesForm from "./CertificatesForm";
+// import LanguagesForm from "./LanguagesForm";
+
+const ResumeForm = ({ onDataChange }) => {
+  const [resumeData, setResumeData] = useState({
+    personalInfo: {},
+    experience: [],
+    education: [],
+    // skills: [],
+    // projects: [],
+    // certificates: [],
+    // languages: [],
+  });
+
+
+  // UPDATE INFO:
+
+  const handlePersonalInfoUpdate = (newPersonalInfo) => {
+    setResumeData(prevData => ({ ...prevData, personalInfo: newPersonalInfo }));
+    onDataChange(prevData => ({ ...prevData, personalInfo: newPersonalInfo }));
+  };
+  
+
+  const handleExperienceUpdate = (newExperience) => {
+    setResumeData((prevData) => ({
+      ...prevData,
+      experience: newExperience,
+    }));
+    onDataChange((prevData) => ({
+      ...prevData,
+      experience: newExperience,
+    }));
+  };
+
+  const handleEducationUpdate = (newEducation) => {
+    setResumeData(prevData => ({ ...prevData, education: newEducation }));
+    onDataChange(prevData => ({ ...prevData, education: newEducation }));
+  };
+  
+
+  // const handleSkillsUpdate = (newSkills) => {
+  //   setResumeData({ ...prevData, skills: newSkills });
+  //   onDataChange({ ...prevData, skills: newSkills });
+  // };
+
+  // const handleProjectsUpdate = (newProjects) => {
+  //   setResumeData({ ...prevData, projects: newProjects });
+  //   onDataChange({ ...prevData, projects: newProjects });
+  // };
+
+  // const handleCertificatesUpdate = (newCertificates) => {
+  //   setResumeData({ ...prevData, certificates: newCertificates });
+  //   onDataChange({ ...prevData, certificates: newCertificates });
+  // };
+
+  // const handleLanguagesUpdate = (newLanguages) => {
+  //   setResumeData({ ...prevData, languages: newLanguages });
+  //   onDataChange({ ...prevData, languages: newLanguages });
+  // };
+
+ // RENDER:
+
+  return (
+    <div className="Labels">
+      <PersonalInfoForm onUpdate={handlePersonalInfoUpdate} />
+      <ExperienceForm onUpdate={handleExperienceUpdate} />
+      <EducationForm onUpdate={handleEducationUpdate} />
+      {/* <SkillsForm onUpdate={handleSkillsUpdate} />
+      <ProjectsForm onUpdate={handleProjectsUpdate} />
+      <CertificatesForm onUpdate={handleCertificatesUpdate} />
+      <LanguagesForm onUpdate={handleLanguagesUpdate} /> */}
+    </div>
+  );
+};
+
+export default ResumeForm;
+
+----------------------------------------
+
+// src/components/ResumePreview.jsx:
+
+// components/ResumePreview.jsx
+
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEnvelope,
+  faPhone,
+  faMapMarker,
+} from "@fortawesome/free-solid-svg-icons";
+
+const ResumePreview = ({ data }) => {
+  const hasData = () => {
+    const hasPersonalInfo =
+      data.personalInfo &&
+      Object.values(data.personalInfo).some((value) => value);
+    const hasExperience =
+      data.experience &&
+      data.experience.some((exp) => exp.company || exp.role || exp.description);
+    const hasEducation =
+    data.education &&
+    data.education.some((edu) => edu.schoolName || edu.degree || edu.major);
+    return hasPersonalInfo || hasExperience || hasEducation;
+  };
+
+  if (!hasData()) {
+    return (
+      <div className="info-text" style={{ fontFamily: "monospace" }}>
+        No data introduced yet.
+      </div>
+    );
+  }
+
+  return (
+    <div className="resume-container">
+      <div className="header">
+        <h1>{data.personalInfo?.fullName}</h1>
+        <div className="sub-info">
+          {data.personalInfo?.email && (
+            <>
+              <FontAwesomeIcon
+                icon={faEnvelope}
+                className="text-gray-600 mr-1"
+              />
+              <p>{data.personalInfo.email}</p>
+              <span className="separator">|</span>
+            </>
+          )}
+          {data.personalInfo?.phoneNumber && (
+            <>
+              <FontAwesomeIcon icon={faPhone} className="text-gray-600 mx-1" />
+              <p>{data.personalInfo.phoneNumber}</p>
+              <span className="separator">|</span>
+            </>
+          )}
+          {data.personalInfo?.location && (
+            <>
+              <FontAwesomeIcon
+                icon={faMapMarker}
+                className="text-gray-600 mx-1"
+              />
+              <p>{data.personalInfo.location}</p>
+            </>
+          )}
+        </div>
+      </div>
+
+      <br></br>
+
+      {data.experience &&
+        data.experience.some(
+          (exp) => exp.company || exp.role || exp.description
+        ) && (
+          <div className="section">
+            <h3>Experience</h3>
+            <ul>
+              {data.experience.map((exp, index) => (
+                <li key={index}>
+                  <div className="list-item">
+                    <div className="list-header">
+                      <p className="company">{exp.company}</p>
+                      <p>
+                        {exp.startDate} - {exp.endDate}
+                      </p>
+                    </div>
+                    <p className="role">{exp.role}</p>
+                    {exp.description && (
+                      <p className="list-bullet">{exp.description}</p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+      {data.education && data.education.length > 0 && (
+        <div className="section">
+          <h3>Education</h3>
+          <ul>
+            {data.education.map((edu, index) => (
+              <li key={index}>
+                <div className="list-item">
+                  <div className="list-header">
+                    <p className="school-name">{edu.schoolName}</p>
+                    <p>{edu.graduationYear}</p>
+                  </div>
+                  <p className="degree">{edu.degree}</p>
+                  {edu.major && (
+                    <p className="list-bullet">{edu.major}</p>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* <div className="section">
+        <h3>Skills</h3>
+      </div>
+
+      <div className="section">
+        <h3>Projects</h3>
+      </div>
+
+      <div className="section">
+        <h3>Certificates</h3>
+      </div>
+
+      <div className="section">
+        <h3>Languages</h3>
+      </div> */}
+    </div>
+  );
+};
+
+export default ResumePreview;
+
+----------------------------------------
+
+// src/components/ProjectsForm.jsx:
+
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+
+const ProjectsForm = ({ onUpdate }) => {
+  const [projectsInfo, setProjectsInfo] = useState({
+    projectName: "",
+    projectDescription: "",
+  });
+
+  const [isFormVisible, setIsFormVisible] = useState(false);
+
+  const toggleFormVisibility = () => {
+    setIsFormVisible(!isFormVisible);
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setProjectsInfo({ ...projectsInfo, [name]: value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onUpdate(projectsInfo);
+  };
+
+  return (
+    <div>
+      <div className="title-button" onClick={toggleFormVisibility}>
+        <h2>Projects Information</h2>
+        <FontAwesomeIcon icon={isFormVisible ? faChevronUp : faChevronDown} />
+      </div>
+      {isFormVisible && (
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Project Name:</label>
+            <input
+              type="text"
+              name="projectName"
+              value={projectsInfo.projectName}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label>Project Description:</label>
+            <textarea
+              name="projectDescription"
+              value={projectsInfo.projectDescription}
+              onChange={handleChange}
+            />
+          </div>
+          {/* Agrega más campos de proyectos según sea necesario */}
+          <button type="submit">Submit</button>
+        </form>
+      )}
+    </div>
+  );
+};
+
+export default ProjectsForm;
+
+----------------------------------------
+
+// src/components/EducationForm.jsx:
+
+import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronDown,
+  faChevronUp,
+  faPlus,
+  faTrash,
+  faSave,
+} from "@fortawesome/free-solid-svg-icons";
+
+const EducationForm = ({ onUpdate }) => {
+  const [educationList, setEducationList] = useState([
+    {
+      schoolName: "",
+      degree: "",
+      major: "",
+      graduationYear: "",
+    },
+  ]);
+
+  useEffect(() => {
+    const savedEducation = localStorage.getItem("education");
+    if (savedEducation) {
+      setEducationList(JSON.parse(savedEducation));
+    }
+  }, []);
+
+  const handleAddEducation = () => {
+    setEducationList([
+      ...educationList,
+      {
+        schoolName: "",
+        degree: "",
+        major: "",
+        graduationYear: "",
+      },
+    ]);
+  };
+
+  const handleDelete = (index) => {
+    const updatedEducationList = [...educationList];
+    
+    if (educationList.length > 1) {
+      updatedEducationList.splice(index, 1);
+    } else {
+      updatedEducationList[index] = {
+        schoolName: "",
+        degree: "",
+        major: "",
+        graduationYear: "",
+      };
+    }
+  
+    setEducationList(updatedEducationList);
+    onUpdate(updatedEducationList);
+    localStorage.setItem("education", JSON.stringify(updatedEducationList));
+  };
+  
+
+  const [isFormVisible, setIsFormVisible] = useState(false);
+  const [hasChanges, setHasChanges] = useState(false);
+
+  const toggleFormVisibility = () => {
+    setIsFormVisible(!isFormVisible);
+  };
+
+  const handleChange = (event, index) => {
+    const { name, value } = event.target;
+    const updatedEducationList = [...educationList];
+    updatedEducationList[index] = { ...updatedEducationList[index], [name]: value };
+    setEducationList(updatedEducationList);
+    onUpdate(updatedEducationList);
+    setHasChanges(true);
+  };
+
+  const handleSave = () => {
+    localStorage.setItem("education", JSON.stringify(educationList));
+    setHasChanges(false);
+  };
+
+  return (
+    <div>
+      <div
+        className={`title-button ${isFormVisible ? "expanded" : ""}`}
+        onClick={toggleFormVisibility}
+      >
+        <h2>Education</h2>
+        <FontAwesomeIcon icon={isFormVisible ? faChevronUp : faChevronDown} />
+      </div>
+      {isFormVisible && (
+        <div className="form-container">
+          <form>
+            {educationList.map((edu, index) => (
+              <div key={index}>
+                <div className="form-field">
+                  <label>School Name:</label>
+                  <input
+                    type="text"
+                    name="schoolName"
+                    value={edu.schoolName}
+                    onChange={(e) => handleChange(e, index)}
+                  />
+                </div>
+                <div className="form-field">
+                  <label>Degree:</label>
+                  <input
+                    type="text"
+                    name="degree"
+                    value={edu.degree}
+                    onChange={(e) => handleChange(e, index)}
+                  />
+                </div>
+                <div className="form-field">
+                  <label>Major:</label>
+                  <input
+                    type="text"
+                    name="major"
+                    value={edu.major}
+                    onChange={(e) => handleChange(e, index)}
+                  />
+                </div>
+                <div className="form-field">
+                  <label>Graduation Year:</label>
+                  <input
+                    type="text"
+                    name="graduationYear"
+                    value={edu.graduationYear}
+                    onChange={(e) => handleChange(e, index)}
+                  />
+                </div>
+                <div className="button-container">
+                  {index === educationList.length - 1 && (
+                    <button type="button" onClick={handleAddEducation}>
+                      <FontAwesomeIcon icon={faPlus} /> New
+                    </button>
+                  )}
+
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(index)}
+                      className="delete-button"
+                    >
+                      <FontAwesomeIcon icon={faTrash} /> Delete
+                    </button>
+
+                  <button
+                    type="button"
+                    onClick={handleSave}
+                    disabled={!hasChanges}
+                    className={hasChanges ? "" : "saved-button"}
+                  >
+                    {hasChanges ? (
+                      <>
+                        <FontAwesomeIcon icon={faSave} /> Save
+                      </>
+                    ) : (
+                      "Saved"
+                    )}
+                  </button>
+                </div>
+              </div>
+            ))}
+          </form>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default EducationForm;
+
+----------------------------------------
+
+// src/components/PersonalInfoForm.jsx:
+
+// components/personalInfoForm.jsx
+
+import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronDown,
+  faChevronUp,
+  faTrash,
+  faSave,
+} from "@fortawesome/free-solid-svg-icons";
+
+const PersonalInfoForm = ({ onUpdate }) => {
+  const [personalInfo, setPersonalInfo] = useState({
+    fullName: "",
+    email: "",
+    phoneNumber: "",
+    location: "",
+  });
+
+  const [isFormVisible, setIsFormVisible] = useState(false);
+  const [hasChanges, setHasChanges] = useState(false);
+
+  useEffect(() => {
+    const savedData = localStorage.getItem("personalInfo");
+    if (savedData) {
+      setPersonalInfo(JSON.parse(savedData));
+    }
+  }, []);
+
+  const toggleFormVisibility = () => {
+    setIsFormVisible(!isFormVisible);
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    const updatedPersonalInfo = { ...personalInfo, [name]: value };
+    setPersonalInfo(updatedPersonalInfo);
+    onUpdate(updatedPersonalInfo);
+    localStorage.setItem("personalInfo", JSON.stringify(updatedPersonalInfo));
+    setHasChanges(true);
+  };
+
+  const handleDelete = () => {
+    const emptyPersonalInfo = {
+      fullName: "",
+      email: "",
+      phoneNumber: "",
+      location: "",
+    };
+    setPersonalInfo(emptyPersonalInfo);
+    onUpdate(emptyPersonalInfo);
+    localStorage.setItem("personalInfo", JSON.stringify(emptyPersonalInfo));
+  };
+
+  const handleSave = () => {
+    localStorage.setItem("personalInfo", JSON.stringify(personalInfo));
+    setHasChanges(false);
+  };
+
+  return (
+    <div>
+      <div
+        className={`title-button ${isFormVisible ? "expanded" : ""}`}
+        onClick={toggleFormVisibility}
+      >
+        <h2>Personal Information</h2>
+        <FontAwesomeIcon icon={isFormVisible ? faChevronUp : faChevronDown} />
+      </div>
+      {isFormVisible && (
+        <div className="form-container">
+          <form>
+            <div className="form-field">
+              <label>Full Name:</label>
+              <input
+                type="text"
+                name="fullName"
+                value={personalInfo.fullName}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-field">
+              <label>Email:</label>
+              <input
+                type="email"
+                name="email"
+                value={personalInfo.email}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-field">
+              <label>Phone:</label>
+              <input
+                type="tel"
+                name="phoneNumber"
+                value={personalInfo.phoneNumber}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-field">
+              <label>Location:</label>
+              <input
+                type="text"
+                name="location"
+                value={personalInfo.location}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="button-container">
+              <button
+                type="button"
+                onClick={handleDelete}
+                className="delete-button"
+              >
+                <FontAwesomeIcon icon={faTrash} />{" "}Delete
+              </button>
+
+              <button
+                type="button"
+                onClick={handleSave}
+                disabled={!hasChanges}
+                className={hasChanges ? "" : "saved-button"}
+              >
+                {hasChanges ? (
+                  <>
+                    <FontAwesomeIcon icon={faSave} /> Save
+                  </>
+                ) : (
+                  "Saved"
+                )}
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default PersonalInfoForm;
+
+----------------------------------------
+
+// src/components/LanguagesForm.jsx:
+
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+
+const LanguagesForm = ({ onUpdate }) => {
+  const [languagesInfo, setLanguagesInfo] = useState({
+    language: "",
+    proficiency: "",
+  });
+
+  const [isFormVisible, setIsFormVisible] = useState(false);
+
+  const toggleFormVisibility = () => {
+    setIsFormVisible(!isFormVisible);
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setLanguagesInfo({ ...languagesInfo, [name]: value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onUpdate(languagesInfo);
+  };
+
+  return (
+    <div>
+      <div className="title-button" onClick={toggleFormVisibility}>
+        <h2>Languages Information</h2>
+        <FontAwesomeIcon icon={isFormVisible ? faChevronUp : faChevronDown} />
+      </div>
+      {isFormVisible && (
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Language:</label>
+            <input
+              type="text"
+              name="language"
+              value={languagesInfo.language}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label>Proficiency:</label>
+            <select
+              name="proficiency"
+              value={languagesInfo.proficiency}
+              onChange={handleChange}
+            >
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Advanced">Advanced</option>
+              <option value="Fluent">Fluent</option>
+              <option value="Native">Native</option>
+            </select>
+          </div>
+          {/* Agrega más campos de idiomas según sea necesario */}
+          <button type="submit">Submit</button>
+        </form>
+      )}
+    </div>
+  );
+};
+
+export default LanguagesForm;
+
+----------------------------------------
+
+// src/components/SkillsForm.jsx:
+
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+
+const SkillsForm = ({ onUpdate }) => {
+  const [skillsInfo, setSkillsInfo] = useState({
+    skillsList: "",
+  });
+
+  const [isFormVisible, setIsFormVisible] = useState(false);
+
+  const toggleFormVisibility = () => {
+    setIsFormVisible(!isFormVisible);
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setSkillsInfo({ ...skillsInfo, [name]: value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onUpdate(skillsInfo);
+  };
+
+  return (
+    <div>
+      <div className="title-button" onClick={toggleFormVisibility}>
+        <h2>Skills Information</h2>
+        <FontAwesomeIcon icon={isFormVisible ? faChevronUp : faChevronDown} />
+      </div>
+      {isFormVisible && (
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Skills List:</label>
+            <textarea
+              name="skillsList"
+              value={skillsInfo.skillsList}
+              onChange={handleChange}
+            />
+          </div>
+          {/* Agrega más campos de habilidades según sea necesario */}
+          <button type="submit">Submit</button>
+        </form>
+      )}
+    </div>
+  );
+};
+
+export default SkillsForm;
+
+----------------------------------------
+
+// src/index.css:
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+----------------------------------------
+
+// src/index.js:
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+
+----------------------------------------
+
+// src/logo.svg:
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 841.9 595.3"><g fill="#61DAFB"><path d="M666.3 296.5c0-32.5-40.7-63.3-103.1-82.4 14.4-63.6 8-114.2-20.2-130.4-6.5-3.8-14.1-5.6-22.4-5.6v22.3c4.6 0 8.3.9 11.4 2.6 13.6 7.8 19.5 37.5 14.9 75.7-1.1 9.4-2.9 19.3-5.1 29.4-19.6-4.8-41-8.5-63.5-10.9-13.5-18.5-27.5-35.3-41.6-50 32.6-30.3 63.2-46.9 84-46.9V78c-27.5 0-63.5 19.6-99.9 53.6-36.4-33.8-72.4-53.2-99.9-53.2v22.3c20.7 0 51.4 16.5 84 46.6-14 14.7-28 31.4-41.3 49.9-22.6 2.4-44 6.1-63.6 11-2.3-10-4-19.7-5.2-29-4.7-38.2 1.1-67.9 14.6-75.8 3-1.8 6.9-2.6 11.5-2.6V78.5c-8.4 0-16 1.8-22.6 5.6-28.1 16.2-34.4 66.7-19.9 130.1-62.2 19.2-102.7 49.9-102.7 82.3 0 32.5 40.7 63.3 103.1 82.4-14.4 63.6-8 114.2 20.2 130.4 6.5 3.8 14.1 5.6 22.5 5.6 27.5 0 63.5-19.6 99.9-53.6 36.4 33.8 72.4 53.2 99.9 53.2 8.4 0 16-1.8 22.6-5.6 28.1-16.2 34.4-66.7 19.9-130.1 62-19.1 102.5-49.9 102.5-82.3zm-130.2-66.7c-3.7 12.9-8.3 26.2-13.5 39.5-4.1-8-8.4-16-13.1-24-4.6-8-9.5-15.8-14.4-23.4 14.2 2.1 27.9 4.7 41 7.9zm-45.8 106.5c-7.8 13.5-15.8 26.3-24.1 38.2-14.9 1.3-30 2-45.2 2-15.1 0-30.2-.7-45-1.9-8.3-11.9-16.4-24.6-24.2-38-7.6-13.1-14.5-26.4-20.8-39.8 6.2-13.4 13.2-26.8 20.7-39.9 7.8-13.5 15.8-26.3 24.1-38.2 14.9-1.3 30-2 45.2-2 15.1 0 30.2.7 45 1.9 8.3 11.9 16.4 24.6 24.2 38 7.6 13.1 14.5 26.4 20.8 39.8-6.3 13.4-13.2 26.8-20.7 39.9zm32.3-13c5.4 13.4 10 26.8 13.8 39.8-13.1 3.2-26.9 5.9-41.2 8 4.9-7.7 9.8-15.6 14.4-23.7 4.6-8 8.9-16.1 13-24.1zM421.2 430c-9.3-9.6-18.6-20.3-27.8-32 9 .4 18.2.7 27.5.7 9.4 0 18.7-.2 27.8-.7-9 11.7-18.3 22.4-27.5 32zm-74.4-58.9c-14.2-2.1-27.9-4.7-41-7.9 3.7-12.9 8.3-26.2 13.5-39.5 4.1 8 8.4 16 13.1 24 4.7 8 9.5 15.8 14.4 23.4zM420.7 163c9.3 9.6 18.6 20.3 27.8 32-9-.4-18.2-.7-27.5-.7-9.4 0-18.7.2-27.8.7 9-11.7 18.3-22.4 27.5-32zm-74 58.9c-4.9 7.7-9.8 15.6-14.4 23.7-4.6 8-8.9 16-13 24-5.4-13.4-10-26.8-13.8-39.8 13.1-3.1 26.9-5.8 41.2-7.9zm-90.5 125.2c-35.4-15.1-58.3-34.9-58.3-50.6 0-15.7 22.9-35.6 58.3-50.6 8.6-3.7 18-7 27.7-10.1 5.7 19.6 13.2 40 22.5 60.9-9.2 20.8-16.6 41.1-22.2 60.6-9.9-3.1-19.3-6.5-28-10.2zM310 490c-13.6-7.8-19.5-37.5-14.9-75.7 1.1-9.4 2.9-19.3 5.1-29.4 19.6 4.8 41 8.5 63.5 10.9 13.5 18.5 27.5 35.3 41.6 50-32.6 30.3-63.2 46.9-84 46.9-4.5-.1-8.3-1-11.3-2.7zm237.2-76.2c4.7 38.2-1.1 67.9-14.6 75.8-3 1.8-6.9 2.6-11.5 2.6-20.7 0-51.4-16.5-84-46.6 14-14.7 28-31.4 41.3-49.9 22.6-2.4 44-6.1 63.6-11 2.3 10.1 4.1 19.8 5.2 29.1zm38.5-66.7c-8.6 3.7-18 7-27.7 10.1-5.7-19.6-13.2-40-22.5-60.9 9.2-20.8 16.6-41.1 22.2-60.6 9.9 3.1 19.3 6.5 28.1 10.2 35.4 15.1 58.3 34.9 58.3 50.6-.1 15.7-23 35.6-58.4 50.6zM320.8 78.4z"/><circle cx="420.9" cy="296.5" r="45.7"/><path d="M520.5 78.1z"/></g></svg>
+----------------------------------------
+
+// src/reportWebVitals.js:
+
+const reportWebVitals = onPerfEntry => {
+  if (onPerfEntry && onPerfEntry instanceof Function) {
+    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+      getCLS(onPerfEntry);
+      getFID(onPerfEntry);
+      getFCP(onPerfEntry);
+      getLCP(onPerfEntry);
+      getTTFB(onPerfEntry);
+    });
+  }
+};
+
+export default reportWebVitals;
+
+----------------------------------------
+
+// src/setupTests.js:
+
+// jest-dom adds custom jest matchers for asserting on DOM nodes.
+// allows you to do things like:
+// expect(element).toHaveTextContent(/react/i)
+// learn more: https://github.com/testing-library/jest-dom
+import '@testing-library/jest-dom';
+
+----------------------------------------
+
