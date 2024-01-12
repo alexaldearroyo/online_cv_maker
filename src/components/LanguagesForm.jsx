@@ -55,7 +55,7 @@ const LanguagesForm = ({ onUpdate }) => {
               <option value="Native">Native</option>
             </select>
           </div>
-          {/* Agrega más campos de idiomas según sea necesario */}
+
           <button type="submit">Submit</button>
         </form>
       )}

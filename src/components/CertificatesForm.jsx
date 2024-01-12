@@ -60,7 +60,7 @@ const CertificatesForm = ({ onUpdate }) => {
               onChange={handleChange}
             />
           </div>
-          {/* Agrega más campos de certificados según sea necesario */}
+
           <button type="submit">Submit</button>
         </form>
       )}

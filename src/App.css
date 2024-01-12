@@ -13,9 +13,6 @@
   justify-content: center; */
 }
 
-
-
-
 .App-header {
   background-color: white;
   color: black;
@@ -185,17 +182,6 @@ h2 {
   flex-grow: 0;
 }
 
-/* .form-field {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-  width: 100%;
-  /* overflow: auto; */
-
- 
-
 .form-field label {
   flex-basis: 10%;
   margin-right: 10px;
@@ -323,7 +309,7 @@ button:hover {
 
 .separator {
   margin: 0 0.5rem;
-  color: #666; /* Color del separador */
+  color: #666;
 }
 
 
@@ -336,13 +322,15 @@ button:hover {
   color: white;
   padding: 5px;
   margin: 0 -20px 10px;
-  font-size: 1.5rem; /* Aumentar el tamaño del título */
-  text-align: left; /* Alinear el título a la izquierda */
+  font-size: 1.5rem;
+  text-align: left;
   border-bottom: 1px solid rgb(33, 50, 136);
 }
 
-/* Estilos para cada elemento de experiencia */
+/* Styles for each experience item */
 .section ul {
+  list-style-type: none;
+  padding: 0;
   list-style-type: none;
   padding: 0;
 }
@@ -352,29 +340,28 @@ button:hover {
   padding-left: 10px;
 }
 
-/* Estilos para el contenido de cada elemento de experiencia */
+
 .section ul li p {
   margin: 5px 0;
-  font-size: 1rem; /* Tamaño de fuente */
-  line-height: 1.4; /* Espaciado de línea */
-  text-align: left; /* Alineación a la izquierda */
+  font-size: 1rem;
+  line-height: 1.4;
+  text-align: left;
 }
 
-/* Estilos para las fechas */
+/* Styles for dates */
 .section ul li p:nth-child(1) {
   color: rgb(33, 50, 136);
-  font-weight: bold; /* Negrita para las fechas */
+  font-weight: bold;
 }
 
 h3 {
-  text-align: left; /* Alineación a la izquierda */
+  text-align: left;
   border-bottom: 1px solid rgb(33, 50, 136);
   margin-bottom: 15px;
   padding-bottom: 10px;
 }
 
 
-/* Agregar estilos para la sección de experiencia */
 .list-item {
   margin-bottom: 20px;
 }

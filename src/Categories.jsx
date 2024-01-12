@@ -13,7 +13,6 @@ const Categories = ({ onVisibilityChange, visibleForms }) => {
       <button onClick={() => setIsMenuOpen(!isMenuOpen)}>Categories</button>
       {isMenuOpen && (
         <div>
-          {/* Radio-buttons para controlar la visibilidad */}
           <label>
             <input
               type="checkbox"

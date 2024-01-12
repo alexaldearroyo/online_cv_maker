@@ -39,7 +39,6 @@ const SkillsForm = ({ onUpdate }) => {
               onChange={handleChange}
             />
           </div>
-          {/* Agrega más campos de habilidades según sea necesario */}
           <button type="submit">Submit</button>
         </form>
       )}
